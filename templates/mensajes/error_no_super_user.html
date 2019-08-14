@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+{% load staticfiles %}
+{% load static %}
+
+<h1 style="text-align: center"> <img src={% static "imagenes\Permisos\warning.png" %}  />Error </h1>
+<br>
+<div class="alert alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Error!</strong> No tiene Perimiso para esta funcionalidad 
+</div>
+
+<br>
+
+<p class="text-center">
+<a class= "btn btn-primary" href="{% url 'usuario:index_vistas' %}">Regresar</a>
+</p>
+
+{% endblock %}

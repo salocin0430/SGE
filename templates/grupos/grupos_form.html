@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h1 style="text-align: center">Registro de Reporte de Lider de Grupo</h1>
+
+<h4 style="text-align: center"><em>"Por tanto, id, y haced discípulos<br>a todas las naciones, bautizándolas<br>en el nombre del Padre,<br>y del Hijo, y del Espíritu Santo"</em></h4>
+<h5 style="text-align: center"><em>         San Mateo 28:19</em></h5><br>
+
+<div class="panel panel-info" >
+	<div class="panel-heading" >Información del Reporte</div>
+		<div class="panel-body" >
+			<form method="post" action="" enctype="multipart/form-data" required>
+				{% csrf_token %}
+				{{form.as_p}}
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="form-group">
+			<button class="btn btn-primary " type="submit">Guardar</button>
+			<a class= "btn btn-danger" href="{% url 'grupos:grupos_listar' %}">Cancelar</a>
+		</div>
+	</div>
+</div>
+</form>
+<br><br>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h1 style="text-align: center">Registro de Asistencia de Miembros</h1>
+
+<h4 style="text-align: center"><em>"Por tanto, id, y haced discípulos<br>a todas las naciones, bautizándolas<br>en el nombre del Padre,<br>y del Hijo, y del Espíritu Santo"</em></h4>
+<h5 style="text-align: center"><em>         San Mateo 28:19</em></h5><br>
+
+			<form class="form-inline" method="post" action="" enctype="multipart/form-data" required>
+				{% csrf_token %}
+
+				<div class="panel panel-info" >
+				  <div class="panel-heading" >Información cantidad de asistencia de miembros</div>
+				  <div class="panel-body" >
+
+
+				  <div class="form-group"> 
+				    <label for="nombres"  class="classy" style="margin-right: 35px">Cantidad de Hombres Adultos:</label>
+				    <input type="number" class="form-control" style="margin-right: 35px" name="asistencia_hombres" required>
+				  </div>
+				  
+				  <div class="form-group">
+				  	<label class="classy" style="margin-right: 10px">Cantidad de Mujeres Adultas:</label>
+				    <input type="number" class="form-control" style="margin-right: 35px" name="asistencia_mujeres" required>
+				  </div>
+				  <br><br>
+
+					<div class="form-group">
+						<label class="classy" style="margin-right: 100px">Cantidad de Jóvenes:</label>
+					    <input type="number" class="form-control" style="margin-right: 35px" name="asistencia_jovenes" required>
+				  	</div>
+
+					<div class="form-group">
+				    <label class="classy" style="margin-right: 30px">Cantidad de Adolescentes:</label>
+				    <input type="number" class="form-control" style="margin-right: 40px" name="asistencia_adolecentes" required>
+				  	</div>
+				  	<br><br>
+
+				  	<div class="form-group">
+				    <label class="classy" style="margin-right: 120px">Cantidad de niños:</label>
+				    <input type="number" class="form-control" style="margin-right: 40px" name="asistencia_niños" required>
+				  	</div>
+
+				  	<div class="form-group">
+				    <label class="classy" style="margin-right: 173px">Día:</label>
+				    <input type="text" class="form-control" placeholder="Ej: Domingo, Miércoles" name="dia" required>
+				  	</div>
+
+
+				  </div>
+				</div>	
+<br>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="form-group">
+			<button class="btn btn-primary" style="margin-right: 40px" type="submit">Guardar</button>
+			<a class= "btn btn-danger" href="{% url 'asistencia:listar' %}">Cancelar</a>
+		</div>
+	</div>
+</div>
+</form>
+<br><br>
+{% endblock %}

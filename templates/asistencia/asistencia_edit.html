@@ -1,0 +1,69 @@
+{% extends 'base/base.html' %}
+{% block navbar %}
+{% endblock %}
+{% block content %}
+
+<div class="modal-dialog modal-lg">
+        <div class="modal-content">
+                {% if object_list %}
+                <form role="form" action="{% url 'asistencia:asistencia_editar' asistencia.id %}" method="post">
+                {% else %}
+                <form role="form" action="{% url 'asistencia:asistencia_editar' asistencia.id %}" method="post">
+                {% endif %}
+                        <div class="modal-header" style="text-align: right;">
+                 <a class= "btn btn-danger btn-sm" href="{% url 'asistencia:listar' %}">x</a>
+            </div>
+
+<div class="modal-body">
+	<h1 style="text-align: center">Editar asistente semanal</h1>
+	{% csrf_token %}
+	<br>
+	<div class="panel-group" id="accordion">
+	  <div class="panel panel-default">
+		<div class="panel-heading" >
+		<h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+	        Datos de asistencia semanal</a>
+	      </h4>
+	      </div>
+			<div id="collapse1" class="panel-collapse collapse in">
+			  <div class="panel-body">
+				<div class="form-group">
+				    <label for="nombres" style="margin-right: 40px" class="classy">Cantidad de Hombres Adultos: <td required> {{form.asistencia_hombres}}{{form.asistencia_hombres.errors}}</td></label>
+				    
+				    <label class="classy" style="margin-right: 40px">Cantidad de Mujeres Adultas:<td required> {{form.asistencia_mujeres}}{{form.asistencia_mujeres.errors}}</td></label>
+
+				    <label class="classy" style="margin-right: 40px" >Cantidad de Jóvenes: <td required> {{form.asistencia_jovenes}}{{form.asistencia_jovenes.errors}}</td></label>
+				    
+		   			<label class="classy" style="margin-right: 40px">Cantidad de Adolescentes: <td required> {{form.asistencia_adolecentes}}{{form.asistencia_adolecentes.errors}}</td></label>
+
+		   			<label class="classy" style="margin-right: 40px">Cantidad de niños: <td required> {{form.asistencia_niños}}{{form.asistencia_niños.errors}}</td></label>
+
+		   			<label class="classy" style="margin-right: 40px">Día: <td required> {{form.dia}}{{form.dia.errors}}</td></label>
+
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+		</div>
+
+<div class="modal-footer">
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="form-group">
+			<button class="btn btn-primary" style="margin-right: 40px" type="submit">Guardar</button>
+			<a class= "btn btn-danger" href="{% url 'asistencia:listar' %}">Cancelar</a>
+		</div>
+	</div>
+</div>
+	</div>
+</div>
+</div>
+</form>
+
+<br><br>
+
+{% endblock %}

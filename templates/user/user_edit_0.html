@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h1 style="text-align: center">Editar de usuario</h1>
+
+<h4 style="text-align: center"><em>"Por tanto, id, y haced discípulos<br>a todas las naciones, bautizándolas<br>en el nombre del Padre,<br>y del Hijo, y del Espíritu Santo"</em></h4>
+<h5 style="text-align: center"><em>         San Mateo 28:19</em></h5>
+
+<br><br><br>
+<form class="navbar-form navbar-left" role="search" method="POST" action="{% url 'login:editar'%}" autocomplete="off">{% csrf_token %}
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="User" id="miBusqueda" name="value" required>
+		<input type="password" class="form-control" placeholder="Contraseña" id="miBusqueda" name="value1" required>
+	</div>
+	<button type="submit" class="btn btn-default">Enviar</button>
+
+</form>
+
+{% endblock %}

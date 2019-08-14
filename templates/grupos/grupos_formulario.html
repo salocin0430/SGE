@@ -1,0 +1,314 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+
+<script> 
+function DameFecha(){
+	var mydate=new Date(); 
+	var year=mydate.getYear(); 
+	if (year < 1000) 
+		year+=1900; 
+	var day=mydate.getDay(); 
+	var month=mydate.getMonth()+1; 
+	if (month<10) 
+		month="0"+month; 
+	var daym=mydate.getDate(); 
+	if (daym<10) 
+		daym="0"+daym;
+	var fecha= String(year+"-"+month+"-"+daym);
+	return fecha; 
+	}
+</script>
+ 
+
+<h1 style="text-align: center">Registro de Reporte de Líder de Grupo</h1>
+
+
+<h4 style="text-align: center"><em>"Por tanto, id, y haced discípulos<br>a todas las naciones, bautizándolas<br>en el nombre del Padre,<br>y del Hijo, y del Espíritu Santo"</em></h4>
+<h5 style="text-align: center"><em>         San Mateo 28:19</em></h5><br>
+
+
+	
+
+<form class="form-inline" role="form" method="post" enctype="multipart/form-data" autocomplete="off">
+ {% csrf_token %}
+
+ <div class="panel panel-info" >
+  <div class="panel-heading" >Datos de reporte</div>
+  <div class="panel-body" >
+
+  <div class="form-group"> 
+    <label style="margin-right: 20px" class="classy">Nro. del grupo:</label>
+    <input type="number" class="form-control" style="margin-right: 30px" name="nro_grupo" required>
+  </div>
+  
+  <div class="form-group">
+  <label class="classy" style="margin-right: 5px">Fecha de visita:</label>
+    <input input type="date" class="form-control" style="margin-right: 30px" name="fecha_visita" min="1920-01-01" max="DameFecha()"  required>
+  </div>
+
+	<div class="form-group">
+		<label class="classy" style="margin-right: 5px" >Líder del grupo:</label>
+	    <input type="text" class="form-control" name="lider" required>
+  	</div>
+	<br><br>
+
+	<div class="form-group">
+    <label class="classy" style="margin-right: 45px">Supervisor:</label>
+    <input type="text" class="form-control" name="supervisor" required>
+  </div>
+</div>
+</div>
+  	<br><br><br><br>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">Datos del grupo familiar</div>
+  <div class="panel-body">  	
+	<div class="form-group">
+		<label class="classy" style="margin-right: 65px" >Hermanos:</label>
+		<input type="number" class="form-control" style="margin-right: 30px" name="hermanos_familiar" required>
+  	</div>
+
+	<div class="form-group">
+	    <label class="classy" style="margin-right: 15px" >Discípulos:</label>
+		<input type="number" class="form-control" style="margin-right: 30px" name="discipulos_familiar" required>
+  	</div>
+
+	<div class="form-group">
+		<label class="classy" style="margin-right: 40px">Amigos:</label>		
+	    <input type="number" class="form-control" name="amigos_familiar"  required>
+  	</div>
+  	<br><br>
+
+	<div class="form-group">
+		<label class="classy" style="margin-right: 25px">Niños Cristianos:</label>
+		<input type="number" class="form-control" style="margin-right: 25px" name="niños_cristianos"  required>
+  	</div>
+
+  	<div class="form-group">
+		<label class="classy" >Niños Amigos:</label>
+		<input type="number" class="form-control" style="margin-right: 25px" name="niños_amigos"  required>
+  	</div>
+
+  	<div class="form-group">
+		<label class="classy" >Conversiones:</label>
+		<input type="number" class="form-control" name="conversiones_familiar"  required>
+  	</div>
+  	<br><br>
+
+  	<div class="form-group">
+		<label class="classy" style="margin-right: 5px">Conversiones niños:</label>
+		<input type="number" class="form-control" name="conversiones_niños"  required>
+  	</div>
+  </div>
+</div>	 	
+  	<br><br><br><br>
+
+  	
+ <div class="panel panel-info">
+  <div class="panel-heading">Datos PDI - Visitas</div>
+  <div class="panel-body"> 	
+	<div class="form-group">
+		<label class="classy" style="margin-right: 70px" >Telefónica:</label>
+		<input type="number" class="form-control" style="margin-right: 30px" name="telefonica">
+  	</div>
+
+	<div class="form-group">
+		<label class="classy" style="margin-right: 50px" >Electrónica:</label>
+		<input type="number" class="form-control" style="margin-right: 30px" name="electronica">
+  	</div>
+
+	<div class="form-group">
+		<label class="classy">Personal:</label>
+	    <input type="number" class="form-control" name="personal">
+  	</div>
+  	<br><br>
+	<div class="form-group">
+		<label class="classy" style="margin-right: 5px">Esc. de capacitación:</label>
+	    <input type="number" class="form-control" style="margin-right: 30px" name="esc_capacitacion">
+  	</div>
+
+  	<div class="form-group">
+		<label class="classy" style="margin-right: 5px">Ofrenda del grupo:</label>
+	    <input type="number" class="form-control" name="ofrenda_grupo">
+  	</div>
+ </div>
+</div>
+<br><br><br><br>
+
+  	
+<div class="panel panel-info">
+  <div class="panel-heading">Datos Iglesia</div>
+  <div class="panel-body"> 	
+	<div class="form-group">
+		<label class="classy" style="margin-right: 5px" >Hermanos:</label>
+		<input type="number" class="form-control" style="margin-right: 30px" name="hermanos_iglesia" required>
+  	</div>
+
+	<div class="form-group">
+		<label class="classy" style="margin-right: 25px" >Discípulos:</label>
+		<input type="number" class="form-control" style="margin-right: 30px" name="discipulos_iglesia"  required>
+  	</div>
+
+	<div class="form-group">
+		<label class="classy" >Amigos:</label>
+	    <input type="number" class="form-control" name="amigos_iglesia"  required>
+  	</div>
+  	<br><br>
+	<div class="form-group">
+		<label class="classy" style="margin-right: 35px">Niños:</label>
+	    <input type="number" class="form-control" style="margin-right: 30px" name="niños_iglesia" required>
+  	</div>
+
+  	<div class="form-group">
+		<label class="classy" style="margin-right: 5px">Conversiones:</label>
+	    <input type="number" class="form-control" name="conversiones_iglesia" required>
+  	</div>
+ </div>
+</div>
+<br><br><br><br>
+
+  	
+<div class="panel panel-info">
+  <div class="panel-heading">Faltaron al Grupo</div>
+  <div class="panel-body"> 	
+	<div class="form-group">
+		<label class="classy" style="margin-right: 15px" >Persona #1:</label>
+		<input type="text" class="form-control" placeholder="Máx. 30 caracteres" style="margin-right: 40px" name="faltaron_grupo_uno">
+  	</div>
+
+  	<div class="form-group">
+		<label class="classy">Motivo:</label>
+		<input type="text" class="form-control" placeholder="Máx. 25 caracteres" style="margin-right: 40px" name="motivo_grupo_uno">
+  	</div>
+
+	<div class="form-group">
+		<label class="classy">Visitó después:</label>
+		<select  type="checkbox" name="visito_despues_uno" style="-webkit-border-radius: 8px; font-size: 16px; height: 34px; width: 60px; background-color: #ddd;" required>
+			<option>---</option>
+			<option value="Si" >Si</option>
+			<option value="No" >No</option>
+		</select>
+	</div>
+
+	<br><br>
+
+	<div class="form-group">
+		<label class="classy" style="margin-right: 15px" >Persona #2:</label>
+		<input type="text" class="form-control" placeholder="Máx. 30 caracteres" style="margin-right: 40px" name="faltaron_grupo_dos">
+  	</div>
+
+  	<div class="form-group">
+		<label class="classy">Motivo:</label>
+		<input type="text" class="form-control" placeholder="Máx. 25 caracteres" style="margin-right: 40px" name="motivo_grupo_dos">
+  	</div>
+
+	<div class="form-group">
+		<label class="classy">Visitó después:</label>
+		<select  type="checkbox" name="visito_despues_dos" style="-webkit-border-radius: 8px; font-size: 16px; height: 34px; width: 60px; background-color: #ddd;" required>	
+			<option>---</option>
+			<option value="Si" >Si</option>
+			<option value="No" >No</option>	   
+		</select>
+	</div>
+	<br><br>
+
+	<div class="form-group">
+		<label class="classy" style="margin-right: 15px" >Persona #3:</label>
+		<input type="text" class="form-control" placeholder="Máx. 30 caracteres" style="margin-right: 40px" name="faltaron_grupo_tres">
+  	</div>
+
+  	<div class="form-group">
+		<label class="classy">Motivo:</label>
+		<input type="text" class="form-control" placeholder="Máx. 25 caracteres" style="margin-right: 40px" name="motivo_grupo_tres">
+  	</div>
+
+	<div class="form-group">
+		<label class="classy">Visitó después:</label>
+		<select  type="checkbox" name="visito_despues_tres" style="-webkit-border-radius: 8px; font-size: 16px; height: 34px; width: 60px; background-color: #ddd;" required>	
+			<option>---</option>
+			<option value="Si" >Si</option>
+			<option value="No" >No</option>		   
+		</select>
+	</div>
+	<br><br>
+
+	<div class="form-group">
+		<label class="classy" style="margin-right: 15px" >Persona #4:</label>
+		<input type="text" class="form-control" placeholder="Máx. 30 caracteres" style="margin-right: 40px" name="faltaron_grupo_cuatro">
+  	</div>
+
+  	<div class="form-group">
+		<label class="classy">Motivo:</label>
+		<input type="text" class="form-control" placeholder="Máx. 25 caracteres" style="margin-right: 40px" name="motivo_grupo_cuatro">
+  	</div>
+
+	<div class="form-group">
+		<label class="classy">Visitó después:</label>
+		<select  type="checkbox" name="visito_despues_cuatro" style="-webkit-border-radius: 8px; font-size: 16px; height: 34px; width: 60px; background-color: #ddd;" required>	
+			<option>---</option>
+			<option value="Si" >Si</option>
+			<option value="No" >No</option>		   
+		</select>
+	</div>
+
+	<br><br>
+
+	<div class="form-group">
+		<label class="classy" style="margin-right: 15px" >Persona #5:</label>
+		<input type="text" class="form-control" placeholder="Máx. 30 caracteres" style="margin-right: 40px" name="faltaron_grupo_cinco">
+  	</div>
+
+  	<div class="form-group">
+		<label class="classy">Motivo:</label>
+		<input type="text" class="form-control" placeholder="Máx. 25 caracteres" style="margin-right: 40px" name="motivo_grupo_cinco">
+  	</div>
+
+	<div class="form-group">
+		<label class="classy">Visitó después:</label>
+		<select  type="checkbox" name="visito_despues_cinco" style="-webkit-border-radius: 8px; font-size: 16px; height: 34px; width: 60px; background-color: #ddd;" required>	
+			<option>---</option>
+			<option value="Si" >Si</option>
+			<option value="No" >No</option>		   
+		</select>
+	</div>
+
+ </div>
+</div>
+<br><br>
+
+<div class="panel panel-info">
+  <div class="panel-heading">Nuevos convertidos y comentarios</div>
+  <div class="panel-body"> 	
+  <div class="form-group">
+		<label class="classy" >Nuevos convertidos: </label>
+	    <textarea class="form-control" name="nuevos_convertidos" style="margin-right: 40px" cols="40" rows="4"></textarea>
+  </div>
+
+  <div class="form-group">
+		<label class="classy" >Comentarios: </label>
+	    <textarea class="form-control" name="comentarios" cols="40" rows="4"></textarea>
+  	</div>
+</div>
+</div>
+</div>
+  	
+
+	<br><br><br><br>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+
+				<button class="btn btn-primary " type="submit">Guardar</button>
+				 <label class="classy" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				<a class= "btn btn-danger" href="{% url 'grupos:grupos_listar' %}">Cancelar</a>
+				<br><br>
+			</div>
+		</div>
+	</div>
+	
+</form>
+
+{% endblock %}

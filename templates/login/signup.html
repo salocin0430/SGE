@@ -1,0 +1,106 @@
+{% extends 'base/base.html' %}
+
+{% load staticfiles %}
+{% load static %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/botones.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align: center">Creación de Usuario Login</h1>
+<br>
+<div class="alert alert-warning">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Advertencia!</strong> Lea cuidadosamente los requisitos para la creación correcta del usuario
+</div>
+
+<h4 style="text-align: center"><b>- Requerido. 150 caracteres o menos. Válido, letras, dígitos y @ /. / + / - / _ solamente. <br>- Su contraseña no puede asemejarse tanto a su información personal.<br>- Su contraseña debe contener por lo menos 8 caracteres. <br>- La contraseña no puede ser una contraseña de uso común. <br>- Su contraseña no puede ser completamente numérica.</b></h4>
+<br>
+
+
+<div class="panel panel-info" >
+	<div class="panel-heading" >Información Registro de Usuario</div>
+		<div class="panel-body" >
+<form method="post" autocomplete="off">
+	{% csrf_token %}
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label>Nombre(s)</label>
+				<input class="form-control" type="text" name="first_name" required>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label >Apellido(s)</label>
+				<input class="form-control" type="text" name="last_name" required>
+			</div>
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label >Correo</label>
+				<input class="form-control" type="text" name="email">
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label >Nombre de usuario</label>
+				<input class="form-control" type="text" name="username" required>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label >Contraseña</label>
+				<input class="form-control" type="password" name="password1" required>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label >Confirmar contraseña</label>
+				<input class="form-control" type="password" name="password2" required>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<label >¿Será Súper User?&nbsp;&nbsp;</label>
+				<select  type="checkbox" name="is_superuser" style="-webkit-border-radius: 8px; font-size: 16px; height: 34px; width: 60px; background-color: #ddd;" required>		
+					<option value="false" >No</option> 
+				    <option value="true" >Sí</option> 
+				   
+				</select>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+				<button class="btn btn-primary" type="submit">Guardar</button>
+			</div>
+		</div>
+	</div>
+	{% if error.0 %}
+		<div class="alert alert-warning">{{error.1}}</div>
+	{% endif %}
+</form>
+{% endblock %}

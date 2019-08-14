@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<!--
+	Hielo by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+	<head>
+
+		{% load staticfiles %}
+		{% load static %}
+
+		<title>Sistema de Gestión Eclesiástico</title>
+		<link rel="shortcut icon" href="{% static 'imagenes/logo.png' %}">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+
+
+
+	<style>
+		
+	.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	pointer-events: none;
+}
+.modalDialog:target {
+	opacity:1;
+	pointer-events: auto;
+}
+.modalDialog > div {
+	width: 900px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #fff;
+}
+.close {
+	background: #000000;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+.close:hover { background: #666161; }
+
+	</style>
+
+
+
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header" class="alt">
+				<a href="#menu">Menu</a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="{% url 'loginsession' %}">Iniciar Sesión</a></li>
+				</ul>
+			</nav>
+
+		<!-- Banner -->
+			<section class="banner full">
+				<article>
+					<img src={% static "imagenes\images\slide01.jpg" %}/>
+					<div class="inner">
+						<header>
+							<p>1 Juan 4:19</p>
+							<h2>Nosotros amamos, porque Él nos amó primero.</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src={% static "imagenes\images\slide02.jpg" %}/>
+					<div class="inner">
+						<header>
+							<p>Mateo 6:14</p>
+							<h2>Porque si perdonan a otros sus ofensas, <br>también los perdonará a ustedes su Padre celestial</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src={% static "imagenes\images\slide03.jpg" %}/>
+					<div class="inner">
+						<header>
+							<p>1 Pedro 4:8 </p>
+							<h2>Sobre todo, ámense los unos a los otros profundamente, <br>porque el amor cubre multitud de pecados.</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src={% static "imagenes\images\slide04.jpg"%}/>
+					<div class="inner">
+						<header>
+							<p>Hebreos 11:1</p>
+							<h2>Ahora bien, la fe es la garantía de lo que se espera, <br>la certeza de lo que no se ve.</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src={% static "imagenes\images\slide05.jpg"%}/>
+					<div class="inner">
+						<header>
+							<p>2 Tesalonicenses 3:5</p>
+							<h2>Que el Señor los lleve a amar como Dios ama, <br>y a perseverar como Cristo perseveró.</h2>
+						</header>
+					</div>
+				</article>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper style2">
+				<div class="inner">
+					<div class="grid-style">
+
+						<div>
+							<div class="box">
+								<div class="image fit">
+									<img src={% static "imagenes\images\1.jpg"%}/>
+								</div>
+								<div class="content">
+									<header class="align-center">
+										<p>Historia, misión y visión</p>
+										<h2>Misión Panamericana de Colombia</h2>
+									</header>
+									
+									<p align="justify"> La MISION PANAMERICANA DE COLOMBIA es una Entidad Cristiana Evangélica, sin ánimo de lucro, de carácter privado y cuya función principal es la Difusión del Evangelio de Jesucristo,  procurando el desarrollo integral del individuo y de las comunidades, compuesta por personas naturales distribuidas en todo el territorio Nacional y fuera de él quienes para expresar su fe y comunión se reúnen en iglesias locales de acuerdo a las posibilidades geográficas.</p>
+									
+									<!--
+									<a href="#openModal">Lanzar el modal</a>
+
+									<div id="openModal" class="modalDialog">
+									<div>
+										<a href="#close" title="Close" class="close">X</a>	
+											<p>hfgjskdgfjsdakfga</p>
+
+										</div>
+									</div>
+									
+									-->
+
+									<footer class="align-center">
+										<a href="mision" class="button alt">Leer más</a>
+									</footer>
+
+
+									</div>
+								</div>
+							</div>
+						
+
+						<div>
+							<div class="box">
+								<div class="image fit">
+									<img src={% static "imagenes\images\5.jpg" %}/>
+								</div>
+								<div class="content">
+									<header class="align-center">
+										<p>Contacto</p>
+										<h2>Información de desarrolladores</h2>
+									</header>
+									<p align="justify"> Si deseea conocer más, comprar este programa para su iglesia o necesita del servicio de un desarrollador para un nuevo sistema para su empresa, puede comuncarse con nosotros. Para más información, presione en el botón "LEER MÁS" </p>
+									<footer class="align-center">
+										<a href="#openModal" class="button alt">LEER MÁS</a>
+
+										<div id="openModal" class="modalDialog">
+											<div>
+												<a href="#close" title="Close" class="close"><font COLOR="white">X</font></a>
+												<h2>Info. Desarrolladores</h2>
+												<br>
+												<p><font color="black">Desarrolladores:</font></p>
+												<p><font color="black">Nicolás Granada Ramírez<br> Jeferson Romero Largo</font></p>
+												<p><font color="black"></font></p>
+												<br>
+												<p><font color="gris">Si desea comunicarse con nosotros, puede contactarnos a través del correo:<br><font color="black">nicolasgranada720@gmail.com
+													<br>jefersonromero97@gmail.com</font></font></p>
+											</div>
+										</div>
+
+										
+									</footer>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+		<!-- Two 
+			<section id="two" class="wrapper style3">
+				<div class="inner">
+					<header class="align-center">
+						<p>Nam vel ante sit amet libero scelerisque facilisis eleifend vitae urna</p>
+						<h2>Morbi maximus justo</h2>
+					</header>
+				</div>
+			</section>
+		-->
+		<!-- Three 
+			<section id="three" class="wrapper style2">
+				<div class="inner">
+					<header class="align-center">
+						<p class="special">Nam vel ante sit amet libero scelerisque facilisis eleifend vitae urna</p>
+						<h2>Morbi maximus justo</h2>
+					</header>
+					<div class="gallery">
+						<div>
+							<div class="image fit">
+								<a href="#"><img src={% static "imagenes\images\pic01.jpg" %}/></a>
+							</div>
+						</div>
+						<div>
+							<div class="image fit">
+								<a href="#"><img src={% static "imagenes\images\pic02.jpg" %} /></a>
+							</div>
+						</div>
+						<div>
+							<div class="image fit">
+								<a href="#"><img src={% static "imagenes\images\pic03.jpg" %}/></a>
+							</div>
+						</div>
+						<div>
+							<div class="image fit">
+								<a href="#"><img src={% static "imagenes\images\pic04.jpg" %}/></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		-->
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="container">
+					<ul class="icons">
+
+						<li><a href="https://www.facebook.com/centroevangelisticoguadalupe" target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+
+						<!--
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+
+						
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					-->
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Copyright. 2018 Ing. Nicolás Granada, Ing. Jeferson Romero. All rights reserved.
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'js/jquery1.min.js' %}"></script>
+			<script src="{% static 'js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'js/skel.min.js' %}"></script>
+			<script src="{% static 'js/util.js' %}"></script>
+			<script src="{% static 'js/main.js' %}"></script>
+		
+		
+	
+
+	</body>
+</html>

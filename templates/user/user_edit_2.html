@@ -1,0 +1,92 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+{% block navbar %}
+{% endblock %}
+
+<div class="modal-dialog modal-lg">
+        <div class="modal-content">
+                {% if object_list %}
+                <form role="form" enctype="multipart/form-data" action="{% url 'login:user_edit_2' user.id %}" method="post">
+                {% else %}
+                <form role="form" enctype="multipart/form-data" action="{% url 'login:user_edit_2' user.id %}" method="post">
+                {% endif %}
+                 <div class="modal-header" style="text-align: right;">
+                 <a class= "btn btn-danger btn-sm" href="{% url 'login:user_register' %}">x</a>
+            	</div>
+
+<div class="modal-body">
+<h1 style="text-align: center">Editar Usuario</h1>
+<br>
+			<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+	<div class="panel-heading" >
+	<h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+        Edición de usuario</a>
+      </h4>
+      </div>
+		<div id="collapse1" class="panel-collapse collapse in">
+			<div class="panel-body">
+				<div class="form-group">
+
+				    <label class="classy" style="margin-right: 20px">Nombre de usuario:</label>
+				    <td required> {{form.username}}{{form.username.errors}}</td>
+				    
+				    <label class="classy" style="margin-right: 90px">Nombre(s):</label>
+				    <td required> {{form.first_name}}{{form.first_name.errors}}</td>
+
+				    <br><br>
+
+				    <label class="classy" style="margin-right: 80px">Apellido(s):</label>
+				     <td required>{{form.last_name}}{{form.last_name.errors}}</td>
+				    
+		   			<label class="classy" style="margin-right: 115px">Correo:</label>
+		   			<td required> {{form.email}}{{form.email.errors}}</td>
+
+		   			<br><br>
+
+		   			<label class="classy" style="margin-right: 65px">Constraseña:</label>
+		   			<td required> {{form.password1}}{{form.password1.errors}}</td>
+
+		   			<label class="classy" style="margin-right: 40px">Confirmar Constraseña: <td required> {{form.password2}}{{form.password2.errors}}</td></label>
+
+					<br><br>
+
+					{% if request.user.is_superuser %}
+						<label class="classy" style="margin-right: 30px; text-align: center">¿Será Súper User?:</label>
+							<select  type="checkbox" name="is_superuser" style="-webkit-border-radius: 8px; font-size: 16px; height: 34px; width: 60px; background-color: #ddd;" required>
+								{% if form.is_superuser %}
+								<option value="False" >No</option>
+								<option value="True" >Si</option>
+								{% else %}
+								<option value="True" >Si</option>
+								<option value="False" >No</option>
+								{% endif %}
+							</select>
+					{% endif %}
+				<br><br>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="modal-footer">
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="form-group">
+			<button class="btn btn-primary" style="margin-right: 40px" type="submit">Guardar</button>
+			<a class= "btn btn-danger" href="{% url 'login:editar_user' %}">Cancelar</a>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</form>
+<br><br>
+{% endblock %}

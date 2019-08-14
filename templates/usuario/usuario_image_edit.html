@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+	<form method="post" action="" enctype="multipart/form-data">
+		<h1 style="text-align: center">Editar Foto del Perfil</h1>
+		<br><br>
+			<div class="panel panel-info" >
+				<div class="panel-heading" >Editar Foto del miembro</div>
+					<div class="panel-body" >
+					{% csrf_token %}
+					{{ form.image }}
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="form-group">
+			<button class="btn btn-primary " type="submit">Guardar</button>
+			<label class="classy" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<a class= "btn btn-danger" href="{% url 'usuario:usuario_listar' %}">Cancelar</a>
+		</div>
+	</div>
+</div>
+</form>
+<br><br>
+
+{% endblock %}

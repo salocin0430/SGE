@@ -1,0 +1,159 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block content %} 
+
+{% block navbar %}
+{% endblock %}
+
+<div class="modal-dialog modal-lg">
+        <div class="modal-content">
+                {% if object_list %}
+                <form role="form" enctype="multipart/form-data" action="{% url 'usuario:usuario_editar' usuario.id %}" method="post">
+                {% else %}
+                <form role="form" enctype="multipart/form-data" action="{% url 'usuario:usuario_editar' usuario.id %}" method="post">
+                {% endif %}
+                        <div class="modal-header" style="text-align: right;">
+                 <a class= "btn btn-danger btn-sm" href="{% url 'usuario:usuario_listar' %}">x</a>
+            </div>
+
+<div class="modal-body">
+<h1 style="text-align: center">Editar Membresía</h1>
+<br>
+			<form method="post" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+        Información Personal</a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse in">
+      <div class="panel-body">
+				<div class="panel-body" >
+
+				<div class="form-group">
+				    <label for="nombres" style="margin-right: 40px" class="classy">Nombre(s): <td required> {{form.nombres}}{{form.nombres.errors}}</td></label>
+				    
+				    <label class="classy" style="margin-right: 40px">Apellido(s):<td required> {{form.apellidos}}{{form.apellidos.errors}}</td></label>
+
+				   
+		   			<label class="classy" style="margin-right: 40px">Fecha de Nacimiento: <td required> {{form.fecha_nacimiento}}{{form.fecha_nacimiento.errors}}</td></label>
+
+		   			<label class="classy" style="margin-right: 40px" >Lugar de nacimiento: <td required> {{form.lugar_nacimiento}}{{form.lugar_nacimiento.errors}}</td></label>
+		    		
+		    		<label class="classy" style="margin-right: 40px">Edad: <td required> {{form.edad}}{{form.edad.errors}}</td></label>
+		   			 
+		   			<label class="classy" style="margin-right: 40px">Estado civil: <td required> {{form.estado_civil}}{{form.estado_civil.errors}}</td></label>
+					
+		   			<label class="classy" style="margin-right: 40px" >Profesión:<td required> {{form.profesion}}{{form.profesion.errors}}</td></label>
+					
+		   			<label class="classy" style="margin-right: 40px">Teléfono: <td required> {{form.telefono}}{{form.telefono.errors}}</td></label>
+		    		
+		    		<label class="classy" style="margin-right: 40px">Dirección: <td required> {{form.direccion}}{{form.direccion.errors}}</td></label>
+					
+	   				<label class="classy" style="margin-right: 40px">Barrio: <td required> {{form.barrio}}{{form.barrio.errors}}</td></label>
+				
+				</div>
+				</div>
+				</div>
+				
+				<br>
+  </div>
+    </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+        Información de conversión</a>
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+      <div class="panel-body">
+			  	<div class="panel-body">  	
+				
+					<label class="classy" style="margin-right: 40px" >Fecha de conversión: <td required> {{form.fecha_conversion}}{{form.fecha_conversion.errors}}</td></label>
+								  				
+				    <label class="classy" style="margin-right: 40px" >Lugar de conversión: <td required> {{form.lugar_conversion}}{{form.lugar_conversion.errors}}</td></label>  
+
+					
+					<label class="classy" style="margin-right: 40px">Iglesia de conversión: <td required> {{form.iglesia_conversion}}{{form.iglesia_conversion.errors}}</td></label>		
+				    			
+					<label class="classy" style="margin-right: 40px">Pastor de conversión: <td required> {{form.pastor_conversion}}{{form.pastor_conversion.errors}}</td></label>
+					  	
+				</div>
+			</div>
+  		</div>
+    </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+        Información de bautismo</a>
+      </h4>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse">
+      <div class="panel-body">
+			  	<div class="panel-body">
+				
+				<div class="form-group">
+
+					<label class="classy" style="margin-right: 40px" >Fecha de bautismo: <td required> {{form.fecha_bautismo}}{{form.fecha_bautismo.errors}}</td> </label>
+					
+					<label class="classy" style="margin-right: 40px">Lugar de bautismo: <td required> {{form.lugar_bautismo}}{{form.lugar_bautismo.errors}}</td></label>
+					
+					<label class="classy" style="margin-right: 40px">Iglesia de bautismo: <td required> {{form.iglesia_bautismo}}{{form.iglesia_bautismo.errors}}</td></label>
+				    
+					<label class="classy" style="margin-right: 40px">Pastor de bautismo:<td required> {{form.pastor_bautismo}}{{form.pastor_bautismo.errors}}</td></label>
+				    
+			 </div>
+			</div>	 
+  		</div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+        Observaciones y foto</a>
+      </h4>
+    </div>
+    <div id="collapse4" class="panel-collapse collapse">
+      <div class="panel-body">
+					<div class="panel-body">
+				<div class="form-group">
+				<label class="classy" style="margin-right: 40px">Observaciones: <td> {{form.observaciones}}{{form.observaciones.errors}}</td> </label>
+			
+			</div>
+				<br>
+				<label class="classy">Foto: <td> {{ form.image }}{{ form.image.errors }}</td> </label>
+				
+		  	</div>
+  		</div>
+    </div>
+  </div>
+  <div class="modal-footer">
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="form-group">
+			<button class="btn btn-primary" style="margin-right: 40px" type="submit">Guardar</button>
+			<a class="btn btn-danger" href="{% url 'usuario:usuario_listar' %}">Cancelar</a>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+</div>
+</form>
+<br><br>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h1 style="text-align: center">Listado de Usuarios Registrados</h1>
+
+<h4 style="text-align: center"><em>"Por tanto, id, y haced discípulos<br>a todas las naciones, bautizándolas<br>en el nombre del Padre,<br>y del Hijo, y del Espíritu Santo"</em></h4>
+<h5 style="text-align: center"><em>         San Mateo 28:19</em></h5>
+
+<br>
+
+
+<form method="GET" action="{% url 'login:usersearch' %}">
+	<div class="form-group">
+	<input type="text" class="classy" id="miBusqueda" name="q" value="{{request.GET.q}}" placeholder="Buscar..." style="width: 200px; height: 40px; border-radius: 5px;" required>
+	<button class="btn btn-success" type="submit">
+		Buscar
+	</button>
+	</div>
+</form>
+
+<script type="text/javascript">
+    function abrir_modal(url)
+	{
+		
+        $('#popup').load(url, function()
+        {
+            $(this).modal('show');
+            jQuery('#popup').data('bs.modal').options.backdrop = 'static';
+            jQuery('#popup').data('bs.modal').options.keyboard = 'booleano: true';
+        });
+        return false;
+	}
+
+	function cerrar_modal()
+	{
+        $('#popup').modal('hide');
+        return false;
+	}
+</script>
+
+<table class="table table-hover" style="text-align: center">
+	<thead style="background:#c8cdce; font-weight: bold">
+		<tr>
+			<td style="border: 1px solid black">Nombre de usuario</td>
+			<td style="border: 1px solid black">Nombre(s)</td>
+			<td style="border: 1px solid black">Apellido(s)</td>
+			<td style="border: 1px solid black">Correo</td>
+			<td style="border: 1px solid black">Acciones</td>
+		</tr>
+	</thead>
+
+	<tbody>	
+		{% if usuarios %}
+			{% for usuario in usuarios %}
+			<tr>
+				{% if request.user.first_name == usuario.first_name and request.user.last_name == usuario.last_name and request.user.username == usuario.username and request.user.email == usuario.email or request.user.is_superuser %}
+					<td style="border: 1px solid black">{{ usuario.username }}</td>
+					<td style="border: 1px solid black">{{ usuario.first_name }}</td>
+					<td style="border: 1px solid black">{{ usuario.last_name }}</td>
+					<td style="border: 1px solid black">{{ usuario.email }}</td>
+					<td style="border: 1px solid black">
+						<a class="btn btn-primary btn-sm" onclick="return abrir_modal('{% url 'login:user_edit_2' usuario.id %}')">Editar</a>
+				
+						{% if request.user.is_superuser  %}
+							<a class="btn btn-danger btn-sm" onclick="return abrir_modal('{% url 'login:user_eliminar' usuario.id%}')">Eliminar</a>
+						{% endif %}		
+				{% endif %}	
+				</td>
+			</tr>	
+			{% endfor %}
+		{% endif %}	
+	</tbody>
+</table>
+
+<div id="popup" class="modal fade" role="dialog">
+
+</div>
+
+<br>
+
+
+<a href="{% url 'login:user_register' %}" type="submit" class="btn btn-primary">Recargar Página</a>
+
+<br><br>
+{% endblock %}

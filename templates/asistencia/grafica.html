@@ -1,0 +1,69 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h1 style="text-align: center">Gráfica cantidad de asistentes</h1>
+
+<h4 style="text-align: center"><em>"Por tanto, id, y haced discípulos<br>a todas las naciones, bautizándolas<br>en el nombre del Padre,<br>y del Hijo, y del Espíritu Santo"</em></h4>
+<h5 style="text-align: center"><em>         San Mateo 28:19</em></h5><br><br>
+
+
+<section id="content">
+<div class="container">    
+    <div class="row">
+        <hr class="colorgraph">
+        <div class="col‐sm‐40">
+            <h3>Gráfica de Pastel</h3>
+            <canvas id="chart-area3" width="600" height="300"></canvas>
+        </div>
+
+        <hr class="colorgraph">
+        <div class="media">
+            <div class="col‐sm‐40">
+                <h3>Gráfica de Barras</h3>
+                <canvas id="chart-area" width="600" height="300"></canvas>
+            </div>
+        </div>
+        <br><br>
+    </div>
+</div>
+</section>
+
+{% endblock %}
+
+
+
+{% block PiePaginas %}
+<script type="text/javascript">
+
+    var dat = {{mes|safe}};
+    var col = {{color|safe}};
+    var preg = {{nombre|safe}};
+    var i ={{i|safe}};
+    var pieDate=[];
+    var k=0;
+
+    for (var j = 0; j < i ; j++) {
+        pieDate[j]= {value:  dat[j] , color:col[j] , highlight: "#0c62ab" ,label: preg[j] };
+    }
+
+
+    var barChartData = {
+        labels : preg,
+        datasets : [
+            {
+                fillColor : "#6b9dfa",
+                strokeColor : "#ffffff",
+                highlightFill: "#1864f2",
+                highlightStroke: "#ffffff",
+                data : dat
+            }
+        ]
+    }   
+    var ctx = document.getElementById("chart-area3").getContext("2d");
+    var ctx3 = document.getElementById("chart-area").getContext("2d");
+    window.myPie = new Chart(ctx).Pie(pieDate); 
+    window.myPie = new Chart(ctx3).Bar(barChartData, {responsive:true});
+    
+    
+</script>
+{% endblock %}

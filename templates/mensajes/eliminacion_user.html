@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h1 style="text-align: center">Eliminación Exitosa</h1>
+<br>
+<div class="alert alert-success"">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Bien hecho!</strong> La eliminación del usuario fue realizada correctamente
+</div>
+<br>
+<a class= "btn btn-primary" href="{% url 'login:editar_user' %}">Regresar</a>
+
+{% endblock %}

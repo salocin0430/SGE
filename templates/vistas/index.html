@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Página Principal
+{% endblock %}
+
+
+
+{% block content %}
+{% load staticfiles %}
+{% load static %}
+<p class="text-center" ><br><h1 style="text-align: center"> <img src={% static "imagenes\logo2.png" %}> Sistema de Gestión Eclesiástico <em>(SGE)</em> <img src={% static "imagenes\logo120x120.png" %} /> </h1></p>
+<br>
+
+<p class="text-center" >
+	{% if user.is_superuser %}
+	<img src={% static "imagenes\inicio\miembros.png" %}/>
+	<img src={% static "imagenes\inicio\espacio1.png" %} />
+	 {% endif %}
+	<img src={% static "imagenes\inicio\Grupos.png" %}  /> </p>
+<br>
+<p class="text-center" >
+	{% if user.is_superuser %}
+	<a href="{% url 'usuario:Gestion_Miembros' %}" class="btn btn-primary active" role="button">Gestión de Miembros</a> 
+	<img src={% static "imagenes\inicio\espacio1.png" %}  />
+	 {% endif %}
+	<a href="{% url 'usuario:Gestion_Grupos' %}" class="btn btn-primary active" role="button">Gestión de Grupos</a>
+</p>
+<br><br>
+
+{% endblock %}
+

@@ -1,0 +1,185 @@
+{% extends 'base/base.html' %}
+
+
+
+{% block content %}
+
+
+<script> 
+function DameFecha(){
+	var mydate=new Date(); 
+	var year=mydate.getYear(); 
+	if (year < 1000) 
+		year+=1900; 
+	var day=mydate.getDay(); 
+	var month=mydate.getMonth()+1; 
+	if (month<10) 
+		month="0"+month; 
+	var daym=mydate.getDate(); 
+	if (daym<10) 
+		daym="0"+daym;
+	var fecha= String(year+"-"+month+"-"+daym);
+	return fecha; 
+	}
+</script>
+ 
+
+
+
+
+<h1 style="text-align: center">Registro de Membresía </h1>
+
+
+<h4 style="text-align: center"><em>"Por tanto, id, y haced discípulos<br>a todas las naciones, bautizándolas<br>en el nombre del Padre,<br>y del Hijo, y del Espíritu Santo"</em></h4>
+<h5 style="text-align: center"><em>         San Mateo 28:19</em></h5><br>
+
+
+	
+
+<form class="form-inline" role="form" method="post" enctype="multipart/form-data" autocomplete="off">
+ {% csrf_token %}
+
+ <div class="panel panel-info" >
+  <div class="panel-heading" >Información Personal</div>
+  <div class="panel-body" >
+
+  <div class="form-group"> 
+    <label for="nombres" style="margin-right: 70px" class="classy">Nombre(s):</label>
+    <input type="text" class="form-control" style="margin-right: 30px" name="nombres" required>
+  </div>
+  
+  <div class="form-group">
+  <label class="classy" style="margin-right: 55px">Apellido(s):</label>
+    <input type="text" class="form-control" style="margin-right: 30px" name="apellidos" required>
+  </div>
+
+		
+	<br><br>
+	
+	<div class="form-group">
+    <label class="classy">Fecha de Nacimiento:</label>
+    <input type="date" class="form-control" style="margin-right: 30px" name="fecha_nacimiento" min="1920-01-01" max="DameFecha()" required>
+  </div>
+
+	<div class="form-group">
+		<label class="classy" >Lugar de nacimiento:</label>
+	    <input type="text" class="form-control" style="margin-right: 30px" name="lugar_nacimiento" required>
+  	</div>
+
+
+	<div class="form-group">
+		<label class="classy" style="margin-right: 50px">Edad:</label>
+	    <input type="number" class="form-control" name="edad" min=0 required>
+  	</div>
+
+	<br><br>
+
+	<div class="form-group">
+		<label class="classy" style="margin-right: 60px">Estado civil:</label>
+		<input type="text" class="form-control" style="margin-right: 30px" name="estado_civil"  required>
+  	</div>
+
+
+	<div class="form-group">
+		<label class="classy" style="margin-right: 65px" >Profesión:</label>
+		<input type="text" class="form-control" style="margin-right: 30px" name="profesion"  required>
+  	</div>
+
+	<div class="form-group">
+		<label class="classy" style="margin-right: 25px" >Teléfono:</label>
+	    <input type="tel" class="form-control" name="telefono" min=1111111>
+  	</div>
+  	<br><br>
+	<div class="form-group">
+		<label class="classy" style="margin-right: 70px">Dirección:</label>
+		<input type="text" class="form-control" style="margin-right: 30px" name="direccion"  required>
+  	</div>
+
+	<div class="form-group">
+	    <label class="classy" style="margin-right: 90px">Barrio:</label>
+		<input type="text" class="form-control" name="barrio"  required>
+  	</div>
+  </div>
+</div>
+  	<br><br><br><br>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">Información de conversión</div>
+  <div class="panel-body">  	
+	<div class="form-group">
+		<label class="classy" style="margin-right: 5px" >Fecha de conversión:</label>
+		<input type="date" class="form-control" style="margin-right: 30px" name="fecha_conversion" min="1920-01-01" max="DameFecha()"  required>
+  	</div>
+
+	<div class="form-group">
+	    <label class="classy" style="margin-right: 5px" >Lugar de conversión:</label>
+		<input type="text" class="form-control" style="margin-right: 30px" placeholder="Ej: Bogotá, Pereira" name="lugar_conversion"  required>
+  	</div>
+
+	<div class="form-group">
+		<label class="classy" >Iglesia de conversión:</label>		
+	    <input type="text" class="form-control" name="iglesia_conversion"  required>
+  	</div>
+  	<br><br>
+
+	<div class="form-group">
+		<label class="classy" >Pastor de conversión:</label>
+		<input type="text" class="form-control" name="pastor_conversion"  required>
+  	</div>
+  </div>
+</div>	 	
+  	<br><br><br><br>
+
+  	
+ <div class="panel panel-info">
+  <div class="panel-heading">Información de bautismo</div>
+  <div class="panel-body"> 	
+	<div class="form-group">
+		<label class="classy" style="margin-right: 15px" >Fecha de bautismo</label>
+		<input type="date" class="form-control" style="margin-right: 30px" name="fecha_bautismo" min="1920-01-01" max="DameFecha()"  required>
+  	</div>
+
+	<div class="form-group">
+		<label class="classy" >Lugar de bautismo:</label>
+		<input type="text" class="form-control" style="margin-right: 30px" placeholder="Ej: Bogotá, Pereira" name="lugar_bautismo"  required>
+  	</div>
+
+	<div class="form-group">
+		<label class="classy" >Iglesia de bautismo:</label>
+	    <input type="text" class="form-control" name="iglesia_bautismo"  required>
+  	</div>
+  	<br><br>
+	<div class="form-group">
+		<label class="classy" style="margin-right: 5px">Pastor de bautismo:</label>
+	    <input type="text" class="form-control" name="pastor_bautismo" required>
+  	</div>
+ </div>
+</div>	 	
+  	<br><br><br><br>
+  	<div class="form-group">
+		<label class="classy">Observaciones: </label>
+	    <textarea class="form-control" style="margin-right: 40px" name="observaciones" cols="60" rows="6"></textarea>
+  	</div>
+
+
+	<div class="form-group">
+		<label class="classy" >Foto: </label>
+	    <input type="file" class="form-control" name="image">
+  	</div>
+
+	<br><br><br>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+
+				<button class="btn btn-primary" style="margin-right: 40px" type="submit">Guardar</button>
+				<a class= "btn btn-danger" href="{% url 'usuario:usuario_listar' %}">Cancelar</a>
+				<br><br>
+			</div>
+		</div>
+	</div>
+	
+</form>
+
+{% endblock %}

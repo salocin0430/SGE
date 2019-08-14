@@ -1,0 +1,240 @@
+{% extends 'base/base.html' %}
+
+{% load staticfiles %}
+{% load static %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/perfil_css.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% if info_list %} 
+{% with persona=info_list|first %} 
+<!-- Begin Wrapper -->
+
+<div id="wrapper">
+<!-- Begin Content Area -->
+<div id="content">
+ 
+<!-- Begin Header -->
+<header>
+ 
+<!-- Begin Contact Section -->
+<section id="contact-details">
+ 
+<!-- Begin Profile Image Section -->
+<div class="header_1">
+	{% if persona.image %}
+		<img src= "/media/{{persona.image}}{{persona.usuario.image}}"  width="250" height="250" alt="Foto Perfil" />
+	{% elif persona.usuario.image %}
+		<img src= "/media/{{persona.image}}{{persona.usuario.image}}"  width="250" height="250" alt="Foto Perfil" />
+	{% else %}
+		<p class="text-center">
+			<img src={% static "imagenes\Empty_profile\empty_profile.png"%} width="250" height="250" />
+		</p>
+	{% endif %}
+</div>
+<!-- End Profile Image Section -->
+ 
+<!-- Begin Profile Information Section -->
+<div class="header_2">
+ 
+<h1><span>{{ persona.nombres }}{{persona.usuario.nombres}} {{ persona.apellidos }}{{persona.usuario.apellidos}}</span></h1>
+<h3> {{ persona.profesion }}{{persona.usuario.profesion}}</h3>
+ 
+<ul class="info_1">
+<li class="address"><img src="/static/imagenes/PDF/casa.png" width="20" height="20"/>Dirección: {{ persona.direccion }}{{persona.usuario.direccion}} {{ persona.barrio }}{{persona.usuario.barrio}}</li>
+</ul>
+
+<ul class="info_2">
+<li class="phone"><img src="/static/imagenes/PDF/telefono.png" width="20" height="20"/>Teléfono: {{ persona.telefono }}{{persona.usuario.telefono}}</li>
+<li class="address"><img src="/static/imagenes/PDF/estado.png" width="25" height="25"/>Estado civil: {{ persona.estado_civil }}{{persona.usuario.estado_civil}}</li>
+<li class="address"><img src="/static/imagenes/PDF/edad.ico" width="20" height="20"/>Edad: {{ persona.edad }}{{persona.usuario.edad}}</li>
+<li class="address"><img src="/static/imagenes/PDF/reloj.ico" width="20" height="20"/>Registrado(a) el: {{ persona.fecha_registro }}{{persona.usuario.fecha_registro}}</li>
+</ul>
+ 
+</div>
+<!-- End Profile Information Section -->
+ 
+</section>
+<!-- End Contact Section -->
+ 
+</header>
+<!-- End Header -->
+ 
+<div class="clear">&nbsp;</div>
+ 
+<!-- Begin Profile Section -->
+<dl>
+<dt>Información Personal:</dt>
+<dd>
+ 
+<section class="summary">
+<ul class="info_3">
+<li class="nacimiento_fecha">Fecha de nacimiento: {{ persona.fecha_nacimiento }}{{persona.usuario.fecha_nacimiento}}</li>
+<li class="nacimiento_lugar">Lugar de nacimiento: {{ persona.lugar_nacimiento }}{{persona.usuario.lugar_nacimiento}}</li>
+</ul>
+</section>
+ 
+</dd>
+</dl>
+<!-- End Profile Section -->
+
+
+
+
+<div class="clear">&nbsp;</div>
+ 
+<!-- Begin Profile Section -->
+<dl>
+<dt>Información de Conversión :</dt>
+<dd>
+ 
+<section class="summary">
+<ul class="info_3">
+<li class="conversion_fecha">Fecha de conversión: {{ persona.fecha_conversion }}{{persona.usuario.fecha_conversion}}</li>
+<li class="conversion_lugar">Lugar de conversión: {{ persona.lugar_conversion }}{{persona.usuario.lugar_conversion}}</li>
+<li class="conversion_iglesia">Iglesia de conversión: {{ persona.iglesia_conversion }}{{persona.usuario.iglesia_conversion}}</li>
+<li class="conversion_pastor">Pastor de conversión: {{ persona.pastor_conversion }}{{persona.usuario.pastor_conversion}}</li>
+
+</ul>
+</section>
+ 
+</dd>
+</dl>
+
+
+<div class="clear">&nbsp;</div>
+ 
+<!-- Begin Profile Section -->
+<dl>
+<dt>Información de bautismo :</dt>
+<dd>
+ 
+<section class="summary">
+<ul class="info_3">
+<li class="bautismo_fecha">Fecha de bautismo: {{ persona.fecha_bautismo }}{{persona.usuario.fecha_bautismo}}</li>
+<li class="bautismo_lugar">Lugar de bautismo: {{ persona.lugar_bautismo }}{{persona.usuario.lugar_bautismo}}</li>
+<li class="bautismo_iglesia">Iglesia de bautismo: {{ persona.iglesia_bautismo }}{{persona.usuario.iglesia_bautismo}}</li>
+<li class="bautismo_pastor">Pastor de bautismo: {{ persona.pastor_bautismo }}{{persona.usuario.pastor_bautismo}}</li>
+
+</ul>
+</section>
+ 
+</dd>
+</dl>
+
+<div class="clear">&nbsp;</div>
+ 
+<!-- Begin Profile Section -->
+<dl>
+<dt>Familiares :</dt>
+<dd>
+
+<table class="table table-hover" style="text-align: center">
+	<thead style="background:#c8cdce; font-weight: bold">
+		<tr>
+			<td style="border: 1px solid black">Parentesco</td>
+			<td style="border: 1px solid black">Nombre(s)</td>
+			<td style="border: 1px solid black">Apellido(s)</td>
+			<td style="border: 1px solid black">Edad</td>
+		</tr>
+	</thead>
+
+	<tbody>
+		{% if info_list %} <!--Manda el object_list porque usa una clase para listar-->
+		{% for conyuge_hijos in info_list %}
+		<tr>
+			<td style="border: 1px solid black">{{ conyuge_hijos.tipo }}</td>
+			<td style="border: 1px solid black">{{ conyuge_hijos.nombres_familiar }}</td>
+			<td style="border: 1px solid black">{{ conyuge_hijos.apellidos_familiar }}</td>
+			<td style="border: 1px solid black">{{ conyuge_hijos.edad_familiar }}</td>
+			
+		</tr>
+		{% endfor %}
+
+		{% endif %}
+	</tbody>
+</table>
+
+ </dd>
+</dl>
+
+
+
+<div class="clear">&nbsp;</div>
+ 
+<!-- Begin Profile Section -->
+<dl>
+<dt>Observaciones :</dt>
+<dd>
+ 
+<section class="summary">
+<p class="Observaciones">{{ persona.observaciones }}{{persona.usuario.observaciones}}</p>
+
+</section>
+ 
+</dd>
+</dl>
+
+
+<!-- End Education Section -->
+ 
+<div class="clear">&nbsp;</div>
+ 
+<!-- Begin Footer -->
+<footer id="footer">
+ 
+<!-- Begin Footer Content -->
+<div class="footer_content">
+  
+<!-- Begin Schema Person -->
+ 
+
+{% if persona.usuario.id %}
+<ul class="icons_2">
+<li><a href="{% url 'usuario:exportar_pdf' persona.usuario.id %}" target="_blank" title="Generate Resume PDF"><img src="/static/imagenes/PDF/Ver.png" width="48" height="48" alt="Generar Resume PDF" / ></a></li>
+</ul>
+<ul class="icons_2">
+<li><a href="{% url 'usuario:exportar_pdf' persona.usuario.id %}" download="{{ persona.usuario.nombres }} {{ persona.usuario.apellidos }} - Membresía" title="Download Resume PDF"><img src="/static/imagenes/PDF/Descargar.png" width="48" height="48" alt="Descargar PDF" /></a></li>
+</ul>
+{% else %}
+{% if persona.id %}
+<ul class="icons_2">
+<li><a href="{% url 'usuario:exportar_pdf' persona.id %}" target="_blank" title="Generate Resume PDF"><img src="/static/imagenes/PDF/Ver.png" width="48" height="48" alt="Generar Resume PDF" / ></a></li>
+</ul>
+<ul class="icons_2">
+<li><a href="{% url 'usuario:exportar_pdf' persona.id %}" download="{{ persona.nombres }} {{ persona.apellidos }} - Membresía" title="Download Resume PDF"><img src="/static/imagenes/PDF/Descargar.png" width="48" height="48" alt="Descargar PDF" /></a></li>
+</ul>
+{% endif %}
+{% endif %}
+
+
+<!-- End Schema Person -->
+ 
+</div>
+
+
+<!-- End Footer Content -->
+ 
+<div class="credits">
+<b>ADVERTENCIA</b><br>
+El uso de la información almacenada en esta base de datos está limitado a fines eclesiásticos de los miembros del <i>Centro Evangelístico Pereira</i>, quedando excluido cualquier otro uso.
+</div>
+ 
+</footer>
+<!-- End Footer -->
+ 
+</div>
+<!-- End Content -->
+ 
+</div>
+<!-- End Wrapper -->
+ 
+ 	{% endwith %}
+{% else %}
+<h1>No hay registros de usuarios</h1>
+{% endif %}
+
+{% endblock %}

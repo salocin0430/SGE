@@ -1,0 +1,62 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block content %}
+
+{% block navbar %}
+{% endblock %}
+
+<div class="modal-dialog modal-lg">
+        <div class="modal-content">
+                {% if object_list %}
+                <form role="form" enctype="multipart/form-data" action="{% url 'usuario:conyuge_hijos_editar' conyuge_hijos.id %}" method="post">
+                {% else %}
+                <form role="form" enctype="multipart/form-data" action="{% url 'usuario:conyuge_hijos_editar' conyuge_hijos.id %}" method="post">
+                {% endif %}
+                 <div class="modal-header" style="text-align: right;">
+                 <a class= "btn btn-danger btn-sm" href="{% url 'usuario:conyuge_hijos_listar' %}">x</a>
+            	</div>
+
+<div class="modal-body">
+<h1 style="text-align: center">Editar Información de Pariente</h1>
+<br>
+
+	<form method="post" action="" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="form-group">
+				    <label for="nombres" style="margin-right: 40px" class="classy">Parentesco: <td required> {{form.tipo}}{{form.tipo.errors}}</td></label>
+				    
+				    <label class="classy" style="margin-right: 40px">Nombre(s):<td required> {{form.nombres_familiar}}{{form.nombres_familiar.errors}}</td></label>
+
+				    <label class="classy" style="margin-right: 40px" >Apellido(s): <td required> {{form.apellidos_familiar}}{{form.apellidos_familiar.errors}}</td></label>
+				    
+		   			<label class="classy" style="margin-right: 40px">Edad: <td required> {{form.edad_familiar}}{{form.edad_familiar.errors}}</td></label>
+
+<div style="display:none;"> <!--Oculta la etiqueta porque si se excluye, no funciona
+el editar a causa de que no están todos los campos-->
+{{form.usuario}}
+</div>
+					<label> Pariente:
+					<td><input type="text" class="form-control" value="{{conyuge_hijos.usuario.nombres}} {{conyuge_hijos.usuario.apellidos}}" name="nombre" style="width : 220px;" disabled></td>
+					</label>
+				
+				</div>
+
+
+<div class="modal-footer">
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="form-group">
+			<button class="btn btn-primary" style="margin-right: 40px" type="submit">Guardar</button>
+			<a class= "btn btn-danger" href="{% url 'usuario:conyuge_hijos_listar' %}">Cancelar</a>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</form>
+<br><br>
+
+{% endblock %}

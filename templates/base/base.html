@@ -1,0 +1,183 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head> 
+	<meta charset="utf-8">
+	{% block extrahead %}
+	{% endblock %}
+	{% load staticfiles %}
+	{% load static %}
+
+	<!--Materialize-->
+	 <link rel="stylesheet" href="{% static 'css/icon.css' %}">
+	
+ 
+      <!--Import materialize.css-->
+
+	<link rel="shortcut icon" href="{% static 'imagenes/logo.png' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap_color.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+	<title>{% block title %} Documento {% endblock %}</title>
+
+	<style>
+	
+	.dropdown-submenu {
+	position: relative;
+
+	}
+
+	.dropdown-submenu .dropdown-menu {
+	top: 0;
+	left: 100%;
+	margin-top: -1px;
+	display:none;
+	}
+	</style>
+
+</head>
+<!--style="background: #f0e5ff"-->
+<body>
+<div class="container">
+	{% block navbar %}
+		<nav class="navbar navbar-default" role="navigation">
+		  <!-- El logotipo y el icono que despliega el menú se agrupan
+		       para mostrarlos mejor en los dispositivos móviles -->
+		  <div class="navbar-header">
+		    <button type="button" class="navbar-toggle" data-toggle="collapse"
+		            data-target=".navbar-ex1-collapse">
+		      <span class="sr-only">Desplegar navegación</span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		    </button>
+		    <a class="navbar-brand" href="{% url 'usuario:index_vistas' %}"> </a>
+		    <a href="{% url 'usuario:index_vistas' %}"><img src={% static "imagenes\logo60x60.png" %}  /></a>
+		  </div>
+		 
+		  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+		       otro elemento que se pueda ocultar al minimizar la barra -->
+		  <div class="collapse navbar-collapse navbar-ex1-collapse">
+		    <ul class="nav navbar-nav">
+		    	<li><a href="{% url 'usuario:index_vistas' %}">Inicio</a></li>
+		    	<li class="dropdown">
+		    	{% if user.is_superuser %}
+		        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Membresia<b class="caret"></b>
+		        </a>
+		        <ul class="dropdown-menu">
+		          <li><a href="{% url 'usuario:usuario_listar' %}">Listar Membresia</a></li>
+		          <li><a href="{% url 'usuario:usuario_crear' %}">Registrar Membresia</a></li>
+		          <li class="divider"></li>
+		          <li><a href="{% url 'usuario:conyuge_hijos_listar' %}">Listar Parientes</a></li>
+		          <li><a href="{% url 'usuario:Conyuge_hijosListEdit' %}">Registrar Parientes</a></li>
+		        </ul>
+		        {% endif %}
+		      </li>
+		      <li class="dropdown">
+		      	{% if user.is_superuser %}
+		        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Asistencia<b class="caret"></b>
+		        </a>
+				<ul class="dropdown-menu">
+		          <li><a href="{% url 'asistencia:listar' %}">Listar Asistencia</a></li>
+		          <li><a href="{% url 'asistencia:crear' %}">Registrar Asistencia</a></li>
+		          <li class="divider"></li>
+		          <li class="dropdown-submenu">
+        			<a class="test" tabindex="-1" href="#">Gráfica <span class="caret"></span></a>
+        			<ul class="dropdown-menu" style="display:none">
+          				<li><a href="{% url 'asistencia:graficaAnio' %}">Cant. Asistencia anual</a></li>
+			      		<li ><a href="{% url 'asistencia:graficaMes' %}">Cant. Asistencia Mensual</a></li>
+		      	   		<li ><a href="{% url 'asistencia:graficaSemana' %}">Cant. Asistencia Semanal</a></li>
+		      	   		<li class="divider"></li>
+		      	   		<li ><a href="{% url 'asistencia:TiposgraficaAnio' %}">Tipo de Asistencia Anual</a></li>
+		      	   		<li ><a href="{% url 'asistencia:TiposgraficaMes' %}">Tipo de Asistencia Mensual</a></li>
+		      	   		<li ><a href="{% url 'asistencia:TiposgraficaSemana' %}">Tipo de Asistencia Semanal</a></li>
+      
+   					</ul>
+  				</li>
+		        </ul>
+		        {% endif %}
+		      </li>
+		      <li class="dropdown">
+		        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos<b class="caret"></b>
+		        </a>
+				<ul class="dropdown-menu">
+					<li><a href="{% url 'grupos:grupos_listar' %}">Listar grupos</a></li>
+		          <li><a href="{% url 'grupos:grupos_crear' %}">Registrar grupo</a></li>
+
+		          <li class="divider"></li>
+		          <li class="dropdown-submenu">
+        			<a class="test" tabindex="-1" href="#">Gráfica <span class="caret"></span></a>
+        			<ul class="dropdown-menu" style="display:none">
+          				<li><a href="{% url 'grupos:graficaAnio' %}">Cant. Asistencia anual</a></li>
+			      		<li ><a href="{% url 'grupos:graficaMes' %}">Cant. Asistencia Mensual</a></li>
+		     
+      
+   					</ul>
+  				</li>
+  				
+		        </ul>
+		      </li>
+		    </ul>
+		 
+
+		   	 
+		    <ul class="nav navbar-nav navbar-right">
+		      <li class="dropdown">
+		        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		          Opciones <b class="caret"></b>
+		        </a>
+		        <ul class="dropdown-menu">
+			        <li class="dropdown-submenu">
+	          		<li ><a href="{% url 'login:editar_user' %}">Editar Usuario Login</a></li>
+	          		{% if user.is_superuser %}
+				    <li ><a href="{% url 'login:registrar' %}">Registrar Usuario Login</a></li>
+				    <li class="divider"></li>
+				    {% else %}
+				    <li class="divider"></li>
+				    {% endif %}
+				    <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+  				</li>
+		        </ul>
+		      </li>
+		    </ul>
+		  </div>
+		</nav>
+
+
+
+	{% endblock %}
+
+	{% block content %}
+	{% endblock %}
+
+	{% block footer %}
+	{% endblock %}
+</div>
+	<script type="text/javascript" src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+	<script src="{% static 'js/Chart.min.js' %}"></script>
+
+	<script src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/Chart.js' %}"></script>
+
+	{% block extrajs %}
+	{% endblock %}
+
+	{% block PiePaginas %}
+	{% endblock %}
+
+		<script>
+		$(document).ready(function(){
+		  $('.dropdown-submenu a.test').on("click", function(e){
+		    $(this).next('ul').toggle();
+		    e.stopPropagation();
+		    e.preventDefault();
+		  });
+		});
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,306 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+{% block navbar %}
+{% endblock %}
+
+<script> 
+function DameFecha(){
+	var mydate=new Date(); 
+	var year=mydate.getYear(); 
+	if (year < 1000) 
+		year+=1900; 
+	var day=mydate.getDay(); 
+	var month=mydate.getMonth()+1; 
+	if (month<10) 
+		month="0"+month; 
+	var daym=mydate.getDate(); 
+	if (daym<10) 
+		daym="0"+daym;
+	var fecha= String(year+"-"+month+"-"+daym);
+	return fecha; 
+	}
+</script>
+
+<div class="modal-dialog modal-lg">
+        <div class="modal-content">
+                {% if object_list %}
+                <form role="form" action="{% url 'grupos:grupos_editar' grupos.id %}" method="post">
+                {% else %}
+                <form role="form" action="{% url 'grupos:grupos_editar' grupos.id %}" method="post">
+                {% endif %}
+                        <div class="modal-header" style="text-align: right;">
+                 <a class= "btn btn-danger btn-sm" href="{% url 'grupos:grupos_listar' %}">x</a>
+            </div>
+
+<div class="modal-body">
+
+<h1 style="text-align: center">Editar Grupos</h1>
+<br>
+<form method="post" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+	<div class="panel-heading" >
+	<h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+        Datos de reporte</a>
+      </h4>
+      </div>
+		<div id="collapse1" class="panel-collapse collapse in">
+			
+				  <div class="panel-body">
+
+				  <div class="form-group"> 
+				    <label  class="classy" style="margin-right: 40px; text-align: center">Nro. del grupo <td required>{{ form.nro_grupo }}{{ form.nro_grupo.errors }}</td></label>
+
+				    <label class="classy" style="margin-right: 40px; text-align: center">Fecha de visita <td required>{{ form.fecha_visita }}{{ form.fecha_visita.errors }}</td></label>
+
+				    <label class="classy" style="margin-right: 40px; text-align: center">Líder del grupo <td required>{{ form.lider }}{{ form.lider.errors }}</td></label>
+					
+				    <label class="classy" style="margin-right: 40px; text-align: center">Supervisor <td required>{{ form.supervisor }}{{ form.supervisor.errors }}</td></label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="panel panel-default">
+		<div class="panel-heading" >
+		<h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+	        Datos del grupo familiar</a>
+	      </h4>
+	      </div>
+			<div id="collapse2" class="panel-collapse collapse">
+				
+					  <div class="panel-body">
+					<div class="form-group">	
+					<label class="classy" style="margin-right: 40px; text-align: center" >Hermanos <td required>{{ form.hermanos_familiar }}{{ form.hermanos_familiar.errors }}</td></label>
+
+				    <label class="classy" style="margin-right: 40px; text-align: center" >Discípulos <td required>{{ form.discipulos_familiar }}{{ form.discipulos_familiar.errors }}</td></label>
+
+					<label class="classy" style="margin-right: 40px; text-align: center">Amigos <td required>{{ form.amigos_familiar }}{{ form.amigos_familiar.errors }}</td></label>
+
+					<label class="classy" style="margin-right: 40px; text-align: center">Niños Cristianos <td required>{{ form.niños_cristianos }}{{ form.niños_cristianos.errors }}</td></label>
+
+					<label class="classy" style="margin-right: 40px; text-align: center">Niños Amigos <td required>{{ form.niños_amigos }}{{ form.niños_amigos.errors }}</td></label>
+
+					<label class="classy" style="margin-right: 40px; text-align: center">Conversiones <td required>{{ form.conversiones_familiar }}{{ form.conversiones_familiar.errors }}</td></label>
+
+					<label class="classy" style="margin-right: 40px; text-align: center">Conversiones niños <td required>{{ form.conversiones_niños }}{{ form.conversiones_niños.errors }}</td></label>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="panel panel-default">
+		<div class="panel-heading" >
+		<h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+	        Datos PDI - Visitas</a>
+	      </h4>
+	      </div>
+			<div id="collapse3" class="panel-collapse collapse">
+
+				  <div class="panel-body">
+					<div class="form-group">
+						<label class="classy" style="margin-right: 40px; text-align: center">Telefónica <td required>{{ form.telefonica }}{{ form.telefonica.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Electrónica <td required>{{ form.electronica }}{{ form.electronica.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Personal <td required>{{ form.personal }}{{ form.personal.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Esc. de capacitación <td required>{{ form.esc_capacitacion }}{{ form.esc_capacitacion.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Ofrenda del grupo <td required>{{ form.ofrenda_grupo }}{{ form.ofrenda_grupo.errors }}</td></label>
+						
+				  	</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="panel panel-default">
+		<div class="panel-heading" >
+		<h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+	        Datos Iglesia</a>
+	      </h4>
+	      </div>
+			<div id="collapse4" class="panel-collapse collapse">
+
+				  <div class="panel-body">
+					<div class="form-group">
+						<label class="classy" style="margin-right: 40px; text-align: center">Hermanos <td required>{{ form.hermanos_iglesia }}{{ form.hermanos_iglesia.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Discípulos <td required>{{ form.discipulos_iglesia }}{{ form.discipulos_iglesia.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Amigos <td required>{{ form.amigos_iglesia }}{{ form.amigos_iglesia.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Niños <td required>{{ form.niños_iglesia }}{{ form.niños_iglesia.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Conversiones <td required>{{ form.conversiones_iglesia }}{{ form.conversiones_iglesia.errors }}</td></label>
+				  	</div>
+				 </div>
+				</div>
+			</div>
+
+		<div class="panel panel-default">
+		<div class="panel-heading" >
+		<h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+	        Faltaron al Grupo</a>
+	      </h4>
+	      </div>
+			<div id="collapse5" class="panel-collapse collapse">
+
+				  <div class="panel-body">
+					<div class="form-group">
+						<label class="classy" style="margin-right: 40px; text-align: center">Persona #1 <td required>{{ form.faltaron_grupo_uno }}{{ form.faltaron_grupo_uno.errors }}</td></label>
+	
+						<label class="classy" style="margin-right: 40px; text-align: center">Motivo <td required>{{ form.motivo_grupo_uno }}{{ form.motivo_grupo_uno.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Visitó después:</label>
+						<select  type="checkbox" name="visito_despues_uno" style="-webkit-border-radius: 8px; font-size: 16px; height: 34px; width: 60px; background-color: #ddd;" required>
+							{% if grupos.visito_despues_uno == "No" %}
+							<option value="No" >No</option>
+							<option value="Si" >Si</option>
+							{% elif grupos.visito_despues_uno == "Si" %}
+							<option value="Si" >Si</option>
+							<option value="No" >No</option>
+							{% else %}
+							<option>---</option>
+							<option value="Si" >Si</option>
+							<option value="No" >No</option>
+							{% endif %}
+						</select>
+						<br><br>
+						<label class="classy" style="margin-right: 40px; text-align: center">Persona #2 <td required>{{ form.faltaron_grupo_dos }}{{ form.faltaron_grupo_dos.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Motivo <td required>{{ form.motivo_grupo_dos }}{{ form.motivo_grupo_dos.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Visitó después:</label>
+						<select  type="checkbox" name="visito_despues_dos" style="-webkit-border-radius: 8px; font-size: 16px; height: 34px; width: 60px; background-color: #ddd;" required>	
+							{% if grupos.visito_despues_dos == "No" %}
+							<option value="No" >No</option>
+							<option value="Si" >Si</option>
+							{% elif grupos.visito_despues_dos == "Si" %}
+							<option value="Si" >Si</option>
+							<option value="No" >No</option>
+							{% else %}
+							<option>---</option>
+							<option value="Si" >Si</option>
+							<option value="No" >No</option>
+							{% endif %}
+						</select>
+						<br><br>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Persona #3 <td required>{{ form.faltaron_grupo_tres }}{{ form.faltaron_grupo_tres.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Motivo <td required>{{ form.motivo_grupo_tres }}{{ form.motivo_grupo_tres.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Visitó después:</label>
+						<select  type="checkbox" name="visito_despues_tres" style="-webkit-border-radius: 8px; font-size: 16px; height: 34px; width: 60px; background-color: #ddd;" required>	
+							{% if grupos.visito_despues_tres == "No" %}
+							<option value="No" >No</option>
+							<option value="Si" >Si</option>
+							{% elif grupos.visito_despues_tres == "Si" %}
+							<option value="Si" >Si</option>
+							<option value="No" >No</option>
+							{% else %}
+							<option>---</option>
+							<option value="Si" >Si</option>
+							<option value="No" >No</option>
+							{% endif %}
+						</select>
+						<br><br>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Persona #4 <td required>{{ form.faltaron_grupo_cuatro }}{{ form.faltaron_grupo_cuatro.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Motivo <td required>{{ form.motivo_grupo_cuatro }}{{ form.motivo_grupo_cuatro.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Visitó después:</label>
+						<select  type="checkbox" name="visito_despues_cuatro" style="-webkit-border-radius: 8px; font-size: 16px; height: 34px; width: 60px; background-color: #ddd;" required>	
+							{% if grupos.visito_despues_cuatro == "No" %}
+							<option value="No" >No</option>
+							<option value="Si" >Si</option>
+							{% elif grupos.visito_despues_cuatro == "Si" %}
+							<option value="Si" >Si</option>
+							<option value="No" >No</option>
+							{% else %}
+							<option>---</option>
+							<option value="Si" >Si</option>
+							<option value="No" >No</option>
+							{% endif %}
+						</select>
+						<br><br>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Persona #5 <td required>{{ form.faltaron_grupo_cinco }}{{ form.faltaron_grupo_cinco.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Motivo <td required>{{ form.motivo_grupo_cinco }}{{ form.motivo_grupo_cinco.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Visitó después:</label>
+						<select  type="checkbox" name="visito_despues_cinco" style="-webkit-border-radius: 8px; font-size: 16px; height: 34px; width: 60px; background-color: #ddd;" required>
+							{% if grupos.visito_despues_cinco == "No" %}
+							<option value="No" >No</option>
+							<option value="Si" >Si</option>
+							{% elif grupos.visito_despues_cinco == "Si" %}
+							<option value="Si" >Si</option>
+							<option value="No" >No</option>
+							{% else %}
+							<option>---</option>
+							<option value="Si" >Si</option>
+							<option value="No" >No</option>
+							{% endif %}
+						</select>	   
+					</div>
+
+				 </div>
+				</div>
+				</div>
+
+		<div class="panel panel-default">
+		<div class="panel-heading" >
+		<h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+	        Nuevos convertidos y comentarios</a>
+	      </h4>
+	      </div>
+			<div id="collapse6" class="panel-collapse collapse">
+
+				  <div class="panel-body">
+				  <div class="form-group">
+						<label class="classy" style="margin-right: 40px; text-align: center">Nuevos convertidos <td required>{{ form.nuevos_convertidos }}{{ form.nuevos_convertidos.errors }}</td></label>
+
+						<label class="classy" style="margin-right: 40px; text-align: center">Comentarios <td required>{{ form.comentarios }}{{ form.comentarios.errors }}</td></label>
+				  	</div>
+				</div>
+				</div>
+			</div>
+			<br>
+		
+<div class="modal-footer">
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="form-group">
+			<button class="btn btn-primary" style="margin-right: 40px" type="submit">Guardar</button>
+			<a class= "btn btn-danger" href="{% url 'grupos:grupos_listar' %}">Cancelar</a>
+		</div>
+	</div>
+
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</form>
+<br><br>
+{% endblock %}

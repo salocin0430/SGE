@@ -1,0 +1,117 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h1 style="text-align: center">Gráfica Tipo de Asistentes Anual</h1>
+
+<h4 style="text-align: center"><em>"Por tanto, id, y haced discípulos<br>a todas las naciones, bautizándolas<br>en el nombre del Padre,<br>y del Hijo, y del Espíritu Santo"</em></h4>
+<h5 style="text-align: center"><em>         San Mateo 28:19</em></h5><br><br>
+
+
+<form class="navbar-form navbar-left" role="search" method="POST" autocomplete="off">{% csrf_token %}
+    <select onchange="location.href=this.options[this.selectedIndex].value" name="elegir" style="-webkit-border-radius: 8px; font-size: 16px; height: 34px; width: 268px; background-color: #ddd;">
+        <option value="{% url 'asistencia:TiposgraficaAnio'%}">Gráfica Año</option>
+        <option value="{% url 'asistencia:TiposgraficaMes'%}">Gráfica Mes</option>
+        <option value="{% url 'asistencia:TiposgraficaSemana'%}">Gráfica Semana</option>
+    </select>
+
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Buscar" id="miBusqueda" name="value" required>
+    </div>
+    <button type="submit" class="btn btn-default">Enviar</button>
+</form>
+
+<br><br>
+<h3>{{info}}</h3>
+<br>
+<div class="alert alert-info alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Importante</strong> Tenga en cuenta que estos graficos representan información por separado de todos los tipos de asistentes, hombres, mujeres, niños, etc.
+</div>
+
+<br><br>
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">
+ Visualizar Gráfica de Pastel
+</button>
+
+<div id="demo" class="collapse">
+<br><br>
+<section id="content">
+<div class="container">    
+    <div class="row">
+        <hr class="colorgraph">
+        <div class="col‐sm‐40">
+            <h3>Gráfica de Pastel</h3>
+            <canvas id="chart-area3" width="600" height="300"></canvas>
+        </div>
+    </div>
+</div>
+</section>
+</div>
+
+ <br><br>
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo1">
+ Visualizar Gráfica de Barras
+</button>
+<div id="demo1" class="collapse in">
+<section id="content">
+<div class="container">    
+    <div class="row">
+        <hr class="colorgraph">
+        <div class="media">
+            <div class="col‐sm‐40">
+                <h3>Gráfica de Barras</h3>
+                <canvas id="chart-area" width="600" height="300"></canvas>
+            </div>
+        </div>
+        <br><br>
+    </div>
+</div>
+</section>
+</div>
+  <br><br>
+
+<form method="GET" >{% csrf_token %}
+    <a href="{% url 'asistencia:TiposgraficaAnio' %}" type="submit" class="btn btn-default">Reiniciar</a>
+</form>
+
+{% endblock %}
+
+
+
+{% block PiePaginas %}
+<script type="text/javascript">
+
+    var dat = {{mes|safe}};
+    var col = {{color|safe}};
+    var preg = {{nombre|safe}};
+    var i ={{i|safe}};
+    var pieDate=[];
+    var k=0;
+
+    for (var j = 0; j < i ; j++) {
+        pieDate[j]= {value:  dat[j] , color:col[j] , highlight: "#0c62ab" ,label: preg[j] };
+    }
+
+
+    var barChartData = {
+        labels : preg,
+        datasets : [
+            {
+                fillColor : "#6b9dfa",
+                strokeColor : "#ffffff",
+                highlightFill: "#1864f2",
+                highlightStroke: "#ffffff",
+                data : dat
+            }
+        ]
+    }   
+    var ctx = document.getElementById("chart-area3").getContext("2d");
+    var ctx3 = document.getElementById("chart-area").getContext("2d");
+    //Pastel
+    window.myPie = new Chart(ctx).Pie(pieDate); 
+    //Barras
+    window.myPie = new Chart(ctx3).Bar(barChartData, {responsive:true});
+    
+    
+</script>
+{% endblock %}

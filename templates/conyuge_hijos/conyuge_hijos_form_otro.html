@@ -1,0 +1,68 @@
+{% extends 'base/base.html' %}
+
+
+
+{% block content %}
+
+<h1 style="text-align: center">Registro de Pariente</h1>
+
+<h4 style="text-align: center"><em>"Por tanto, id, y haced discípulos<br>a todas las naciones, bautizándolas<br>en el nombre del Padre,<br>y del Hijo, y del Espíritu Santo"</em></h4>
+<h5 style="text-align: center"><em>         San Mateo 28:19</em></h5><br>
+
+
+	
+
+<form class="form-inline" role="form" method="post" enctype="multipart/form-data" autocomplete="off">
+ {% csrf_token %}
+
+ <div class="panel panel-info" >
+  <div class="panel-heading" >Información Personal del Cónyuge e Hijos</div>
+  <div class="panel-body" >
+
+
+  <div class="form-group"> 
+    <label for="nombres"  class="classy" style="margin-right: 35px">Parentesco:</label>
+    <input type="text" class="form-control" style="margin-right: 35px" name="tipo" required>
+  </div>
+  
+  <div class="form-group">
+  	<label class="classy" style="margin-right: 10px">Nombre(s):</label>
+    <input type="text" class="form-control" style="margin-right: 35px" name="nombres_familiar" required> 
+  </div>
+
+	<div class="form-group">
+		<label class="classy" style="margin-right: 10px">Apellido(s):</label>
+	    <input type="text" class="form-control" style="margin-right: 35px" name="apellidos_familiar" required>
+  	</div>
+	
+	<br><br>
+	
+	<div class="form-group">
+    <label class="classy" style="margin-right: 75px">Edad:</label>
+    <input type="number" class="form-control" style="margin-right: 35px" name="edad_familiar" required>
+  </div>
+
+	<div class="form-group" class="related-widget-wrapper">
+		<label class="classy" style="margin-right: 25px">Pariente:</label>
+		<label>
+          <td><input type="text" class="form-control" value="{{pariente.nombres}} {{pariente.apellidos}}" name="nombre" style="width : 220px;" disabled></td>
+          </label> 
+  	</div>
+  </div>
+</div>	
+  	<br><br>
+
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group">
+
+				<button class="btn btn-primary" style="margin-right: 40px" type="submit">Guardar</button>
+				<a class= "btn btn-danger" href="#">Cancelar</a>
+				<br><br>
+			</div>
+		</div>
+	</div>
+	
+</form>
+
+{% endblock %}

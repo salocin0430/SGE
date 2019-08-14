@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h1 style="text-align: center">Error en la creación del usuario</h1>
+<br>
+<div class="alert alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Error!</strong> El username que intenta utilizar no está disponible, por favor vuelva a intentar.
+</div>
+<br>
+<p class="text-center">
+<a class= "btn btn-primary" href="{% url 'login:registrar' %}">Regresar</a>
+</p>
+
+{% endblock %}

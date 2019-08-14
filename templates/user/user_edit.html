@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h1 style="text-align: center">Editar de usuario</h1>
+
+<h4 style="text-align: center"><em>"Por tanto, id, y haced discípulos<br>a todas las naciones, bautizándolas<br>en el nombre del Padre,<br>y del Hijo, y del Espíritu Santo"</em></h4>
+<h5 style="text-align: center"><em>         San Mateo 28:19</em></h5>
+
+<br><br><br>
+
+
+
+<a href="{% url 'login:editar_user' %}" class="btn btn-default" role="button">Reiniciar</a>
+
+<br>
+<table class="table table-hover" style="text-align: center">
+	<thead style="background:#c8cdce; font-weight: bold">
+		<tr>
+			<td style="border: 1px solid black">Nombre de usuario</td>
+			<td style="border: 1px solid black">Nombre</td>
+			<td style="border: 1px solid black">Apellidos</td>
+			<td style="border: 1px solid black">Correo</td>
+			<td style="border: 1px solid black">Acciones</td>
+		</tr>
+	</thead>
+
+	<tbody>	
+		{% if usuarios %}
+			{% for usuario in usuarios %}
+			<tr>
+				{% if request.user.username == usuario.username and request.user.first_name == usuario.first_name and request.user.last_name == usuario.last_name and request.user.username == usuario.username and request.user.email == usuario.email or request.user.is_superuser %}
+					<td style="border: 1px solid black">{{ usuario.username }}</td>
+					<td style="border: 1px solid black">{{ usuario.first_name }}</td>
+					<td style="border: 1px solid black">{{ usuario.last_name }}</td>
+					<td style="border: 1px solid black">{{ usuario.email }}</td>
+					<td style="border: 1px solid black">
+						<a class="btn btn-primary btn-sm" href="{% url 'login:user_edit_2' usuario.id %}">Editar</a>
+				
+						{% if request.user.is_superuser  %}
+							<a class="btn btn-danger btn-sm" href="{% url 'login:user_eliminar' usuario.id%}">Eliminar</a>
+						{% endif %}		
+				{% endif %}	
+				</td>
+			</tr>	
+			{% endfor %}
+		{% else %}	
+			<h3>No existen registros con ese Usuario y Contraseña</h3>
+		{% endif %}	
+	</tbody>
+</table>
+<br>
+{% if user.is_superuser %}
+<a href="{% url 'login:user_register' %}" class="btn btn-default" role="button">Listar usuarios registrados</a>
+{% endif %}
+
+{% endblock %}

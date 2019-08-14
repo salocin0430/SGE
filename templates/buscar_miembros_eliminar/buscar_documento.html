@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h1 style="text-align: center">Perfil de usuario</h1>
+
+<h4 style="text-align: center"><em>"Por tanto, id, y haced discípulos<br>a todas las naciones, bautizándolas<br>en el nombre del Padre,<br>y del Hijo, y del Espíritu Santo"</em></h4>
+<h5 style="text-align: center"><em>         San Mateo 28:19</em></h5>
+
+<br><br><br>
+<form class="navbar-form navbar-left" role="search" method="POST" autocomplete="off">{% csrf_token %}
+	<select onchange="location.href=this.options[this.selectedIndex].value" name="elegir" style="-webkit-border-radius: 8px; font-size: 16px; height: 34px; width: 268px; background-color: #ddd;">
+		<option value="{% url 'usuario:usu_delete_miembro_documento'%}">Documento</option>
+		<option value="{% url 'usuario:usu_delete_miembro_nombres'%}">Nombre</option>
+		<option value="{% url 'usuario:usu_delete_miembro_apellidos'%}">Apellidos</option>
+	</select>
+
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="Buscar" id="miBusqueda" name="value" required>
+	</div>
+	<button type="submit" class="btn btn-default">Enviar</button>
+</form>
+
+<br>
+<table class="table table-hover" style="text-align: center">
+	<thead style="background:#c8cdce; font-weight: bold">
+		<tr>
+			<td style="border: 1px solid black">Nombre(s)</td>
+			<td style="border: 1px solid black">Apellido(s)</td>
+			<td style="border: 1px solid black">Fecha de nacimiento</td>
+			<td style="border: 1px solid black">Teléfono</td>
+			<td style="border: 1px solid black">Dirección</td>
+			<td style="border: 1px solid black">Barrio</td>
+			<td style="border: 1px solid black">Perfil</td>
+			<td style="border: 1px solid black">Acciones</td>
+		</tr>
+	</thead>
+
+	<tbody>	
+			{% for usuario in usuarios %}
+			<tr>
+				<td style="border: 1px solid black">{{ usuario.nombres }}</td>
+				<td style="border: 1px solid black">{{ usuario.apellidos }}</td>
+				<td style="border: 1px solid black">{{ usuario.fecha_nacimiento }}</td>
+				<td style="border: 1px solid black">{{ usuario.telefono }}</td>
+				<td style="border: 1px solid black">{{ usuario.direccion }}</td>
+				<td style="border: 1px solid black">{{ usuario.barrio }}</td>
+				<td style="border: 1px solid black"><a href="{% url 'usuario:perfil_usuario' usuario.id %}">Ver perfil</a></td>
+				<td style="border: 1px solid black">
+					<a class="btn btn-danger btn-sm" href="{% url 'usuario:usuario_eliminar' usuario.id%}">Eliminar</a>
+				</td>
+			</tr>	
+			{% endfor %}
+	</tbody>
+</table>
+
+<form method="GET" >{% csrf_token %}
+	<a href="{% url 'usuario:miembro_editar' %}" type="submit" class="btn btn-default">Reiniciar</a>
+</form>
+<br>
+
+{% endblock %}

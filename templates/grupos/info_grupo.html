@@ -1,0 +1,215 @@
+{% extends 'base/base.html' %}
+
+{% load staticfiles %}
+{% load static %}
+
+{% block extrahead %}
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" href="{% static 'grupos/reset-fonts-grids.css' %}" /> 
+	<link rel="stylesheet" href="{% static 'grupos/info.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/perfil_css.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% if info_list %}
+{% with grupo=info_list|first %} 
+<div id="doc2" class="yui-t7">
+	<div id="inner">
+		<h1 style="text-align: center;">Reporte Lider de Grupo</h1>
+		<hr style="border: 0.5px groove;">
+		<div>
+			<div class="yui-gc">
+				<div class="yui-u first">
+					<h3>Fecha de visita: {{ grupo.fecha_visita }}</h3>
+				</div>
+				<div class="yui-u">
+					<div class="contact-info">
+						<h3>Nro. del grupo: {{ grupo.nro_grupo }}</h3>
+					</div><!--// .contact-info -->
+				</div>
+			</div><!--// .yui-gc -->
+		</div ><!--// hd -->
+
+		<hr style="border: 0.5px groove;">
+
+		<div>
+			<div class="yui-gc">
+				<div class="yui-u first">
+					<h3>Lider de Grupo:</h3>
+					<h4>{{ grupo.lider }}</h4>
+				</div>
+				<div class="yui-u">
+					<div class="contact-info">
+						<h3>Supervisor:</h3><h4>{{ grupo.supervisor }}</h4>
+					</div><!--// .contact-info -->
+				</div>
+			</div><!--// .yui-gc -->
+		</div ><!--// hd -->
+
+		<hr style="border: 0.5px groove;">
+
+		<div id="bd">
+			<div id="yui-main">
+				<div class="yui-b">
+
+					<div>
+						<div>
+							<h2 style="text-align: center;">Información del Reporte</h2>
+						</div>
+						<div class="yui-u">
+
+								<div class="talent">
+									<h3>Datos del grupo familiar</h3>
+									<h5>- Hermanos: {{ grupo.hermanos_familiar }}</h5>
+									<h5>- Discipulos: {{ grupo.discipulos_familiar }}</h5>
+									<h5>- Amigos: {{ grupo.amigos_familiar }}</h5>
+									<h5>- Niños cristianos: {{ grupo.niños_cristianos }}</h5>
+									<h5>- Niños amigos: {{ grupo.niños_amigos }}</h5>
+									<h5>- Conversiones: {{ grupo.conversiones_familiar }}</h5>
+									<h5>- Conversiones niños: {{ grupo.conversiones_niños }}</h5>
+								</div>
+
+								<div class="talent" style="margin-left: 20px;">
+									<h3>Datos PDI - Visitas</h3>
+									<h5>- Telefónica: {{ grupo.telefonica }}</h5>
+									<h5>- Electrónica: {{ grupo.electronica }}</h5>
+									<h5>- Personal: {{ grupo.personal }}</h5>
+									<h5>- Esc. de capacitación: {{ grupo.esc_capacitacion }}</h5>
+									<h5>- Ofrenda del grupo: {{ grupo.ofrenda_grupo }}</h5>
+								</div>
+
+								<div class="talent">
+									<h3>Datos Iglesia</h3>
+									<h5>- Hermanos: {{ grupo.hermanos_iglesia }}</h5>
+									<h5>- Discipulos: {{ grupo.discipulos_iglesia }}</h5>
+									<h5>- Amigos: {{ grupo.amigos_iglesia }}</h5>
+									<h5>- Niños: {{ grupo.niños_iglesia }}</h5>
+									<h5>- Conversiones: {{ grupo.conversiones_iglesia }}</h5>
+								</div>
+						</div>
+					</div><!--// .yui-gf -->
+					<br><br><br><br><br><br><br>
+					<br><br><br><br><br>
+					<hr style="border: 0.5px groove;">
+
+					<div class="yui-gf">
+						<div class="yui-u first">
+							<br><br><br><br>
+							<h2>Faltaron al Grupo</h2>
+						</div>
+						<div class="yui-u">
+							<ul class="talent">
+								<h4><u>Personas</u></h4>
+								<br>
+								{% if grupo.faltaron_grupo_uno %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.faltaron_grupo_uno }}</h5></li>
+								{% endif %}
+								{% if grupo.faltaron_grupo_dos %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.faltaron_grupo_dos }}</h5></li>{% endif %}
+								{% if grupo.faltaron_grupo_tres %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.faltaron_grupo_tres }}</h5></li>{% endif %}
+								{% if grupo.faltaron_grupo_cuatro %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.faltaron_grupo_cuatro }}</h5></li>{% endif %}
+								{% if grupo.faltaron_grupo_cinco %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.faltaron_grupo_cinco }}</h5></li>{% endif %}
+							</ul>
+							<ul class="talent">
+								<h4><u>Motivo</u></h4>
+								<br>
+								{% if grupo.motivo_grupo_uno %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.motivo_grupo_uno }}</h5></li>{% endif %}
+								{% if grupo.motivo_grupo_dos %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.motivo_grupo_dos }}</h5></li>{% endif %}
+								{% if grupo.motivo_grupo_tres %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.motivo_grupo_tres }}</h5></li>{% endif %}
+								{% if grupo.motivo_grupo_cuatro %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.motivo_grupo_cuatro }}</h5></li>{% endif %}
+								{% if grupo.motivo_grupo_cinco %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.motivo_grupo_cinco }}</h5></li>{% endif %}
+							</ul>
+
+							<ul class="talent">
+								<h4><u>Visitó después</u></h4>
+								<br>
+								{% if   grupo.faltaron_grupo_uno %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.visito_despues_uno }}</h5></li>{% endif %}
+								{% if  grupo.faltaron_grupo_dos %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.visito_despues_dos }}</h5></li>{% endif %}
+								{% if  grupo.faltaron_grupo_tres %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.visito_despues_tres }}</h5></li>{% endif %}
+								{% if  grupo.faltaron_grupo_cuatro %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.visito_despues_cuatro }}</h5></li>{% endif %}
+								{% if  grupo.faltaron_grupo_cinco %}
+								<li style="line-height: 24px; border-bottom: 1px solid #ccc;"><h5>{{ grupo.visito_despues_cinco }}</h5></li>{% endif %}
+							</ul>
+						</div>
+					</div><!--// .yui-gf-->
+
+					<div class="yui-gf">
+	
+						<div class="yui-u first">
+							<h2 style="text-align: center;">Nuevos convertidos</h2>
+						</div><!--// .yui-u -->
+
+						<div class="yui-u">
+							<div>
+								<br><br>
+								<p>{{ grupo.nuevos_convertidos }}</p>
+							</div>
+						</div><!--// .yui-u -->
+					</div><!--// .yui-gf -->
+
+					<div class="yui-gf">
+	
+						<div class="yui-u first">
+							<h2 style="text-align: center;">Comentarios</h2>
+						</div><!--// .yui-u -->
+
+						<div class="yui-u">
+							<div>
+								<p>{{ grupo.comentarios }}</p>
+							</div>
+
+						</div><!--// .yui-u -->
+					</div><!--// .yui-gf -->
+
+<!-- Begin Footer -->
+<footer id="footer">
+ 
+<!-- Begin Footer Content -->
+<div class="footer_content">
+  
+<!-- Begin Schema Person -->
+
+<ul class="icons_2">
+<li><a href="{% url 'grupos:exportar_pdf' grupo.id %}" target="_blank" title="Generate Resume PDF"><img src="/static/imagenes/PDF/Ver.png" width="48" height="48" alt="Generar Resume PDF" / ></a></li>
+</ul>
+<ul class="icons_2">
+<li><a href="{% url 'grupos:exportar_pdf' grupo.id %}" download="Reporte Lider de Grupo {{ grupo.nro_grupo }}" title="Download Resume PDF"><img src="/static/imagenes/PDF/Descargar.png" width="48" height="48" alt="Descargar PDF" /></a></li>
+</ul>
+
+</div>
+<!-- End Footer Content -->
+ 
+
+<div class="credits">
+<b>ADVERTENCIA</b><br>
+El uso de la información almacenada en esta base de datos está limitado a fines eclesiásticos de los miembros del <i>Centro Evangelístico Pereira</i>, quedando excluido cualquier otro uso.
+</div>
+ 
+ </footer>
+<!-- End Footer -->
+
+				</div><!--// .yui-b -->
+			</div><!--// yui-main -->
+		</div><!--// bd -->
+	</div><!-- // inner -->
+
+
+</div><!--// doc -->
+{% endwith %}
+
+{% endif %}
+{% endblock %}

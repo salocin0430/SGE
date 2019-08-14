@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+
+{% block navbar%}
+{% endblock %}
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'login/design.css' %}">
+<script type="text/javascript" src="{ static 'login/design.js' }"></script>
+
+<form method="post">
+  {% csrf_token %}
+<div class="login-page">
+  <div class="form">
+    <form class="login-form">
+      <h2 style="text-align: center">Login</h2>
+      <h5 style="text-align: center; color:crimson;">Error, el usuario o contraseña es incorrecto</h5>
+      <br>
+      <input type="text" name="username" placeholder="username"/>
+      <input type="password" name="password" placeholder="password"/>
+      <button type="submit" value="Ingresar">login</button>
+      <p class="message">Olvidó su contraseña? <a href="">Ingrese aquí</a></p>
+    </form>
+  </div>
+</div>
+</form>
+
+{% endblock %}

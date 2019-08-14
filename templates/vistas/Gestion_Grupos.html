@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Gestión de Grupos
+{% endblock %}
+
+
+
+{% block content %}
+{% load staticfiles %}
+{% load static %}
+<p class="text-center" ><br><h1 style="text-align: center"><img src={% static "imagenes\logo2.png" %}>Sistema de Gestión Eclesiástico <em>(SGE)</em> <img src={% static "imagenes\logo120x120.png" %} /> </h1></p>
+
+<br>
+<p class="text-center" ><img src={% static "imagenes\Grupos\Add_grupo.png" %}/>
+	<img src={% static "imagenes\Grupos\espacio.png" %}  />
+	<img src={% static "imagenes\Grupos\listar_grupo.png" %}  /> </p>
+<br>
+<p class="text-center" >
+	<a href="{% url 'grupos:grupos_crear' %}" class="btn btn-primary" role="button">Registrar Grupo</a>
+	<img src={% static "imagenes\Grupos\espacio.png" %}  />
+
+	<a href="{% url 'grupos:grupos_listar' %}" class="btn btn-primary" role="button">Listado de Grupos</a>
+</p>
+<br><br>
+
+{% endblock %}
