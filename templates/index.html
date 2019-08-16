@@ -8,11 +8,14 @@
 <div class="login-page">
   <div class="form">
     <form class="login-form">
-      <h2 style="text-align: center">Login</h2>
+      <img src={% static "imagenes\Logo120x120.png" %} />
+
       <br>
-      <input type="text" name="username" placeholder="username"/>
-      <input type="password" name="password" placeholder="password"/>
-      <button type="submit" value="Ingresar">login</button>
+      <br>
+      
+      <input type="text" name="username" placeholder="Username"/>
+      <input type="password" name="password" placeholder="Password"/>
+      <button type="submit" value="Ingresar">  Login   </button>
       <p class="message">Olvidó su contraseña? <a href="{% url 'password_reset' %}">Ingrese aquí</a></p>
       {% for error in form.non_field_errors %}
       <div class="alert alert-danger">
