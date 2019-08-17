@@ -80,20 +80,6 @@
 				<ul class="dropdown-menu">
 		          <li><a href="{% url 'asistencia:listar' %}">Listar Asistencia</a></li>
 		          <li><a href="{% url 'asistencia:crear' %}">Registrar Asistencia</a></li>
-		          <li class="divider"></li>
-		          <li class="dropdown-submenu">
-        			<a class="test" tabindex="-1" href="#">Gráfica <span class="caret"></span></a>
-        			<ul class="dropdown-menu" style="display:none">
-          				<li><a href="{% url 'asistencia:graficaAnio' %}">Cant. Asistencia anual</a></li>
-			      		<li ><a href="{% url 'asistencia:graficaMes' %}">Cant. Asistencia Mensual</a></li>
-		      	   		<li ><a href="{% url 'asistencia:graficaSemana' %}">Cant. Asistencia Semanal</a></li>
-		      	   		<li class="divider"></li>
-		      	   		<li ><a href="{% url 'asistencia:TiposgraficaAnio' %}">Tipo de Asistencia Anual</a></li>
-		      	   		<li ><a href="{% url 'asistencia:TiposgraficaMes' %}">Tipo de Asistencia Mensual</a></li>
-		      	   		<li ><a href="{% url 'asistencia:TiposgraficaSemana' %}">Tipo de Asistencia Semanal</a></li>
-      
-   					</ul>
-  				</li>
 		        </ul>
 		        {% endif %}
 		      </li>
@@ -104,16 +90,7 @@
 					<li><a href="{% url 'grupos:grupos_listar' %}">Listar grupos</a></li>
 		          <li><a href="{% url 'grupos:grupos_crear' %}">Registrar grupo</a></li>
 
-		          <li class="divider"></li>
-		          <li class="dropdown-submenu">
-        			<a class="test" tabindex="-1" href="#">Gráfica <span class="caret"></span></a>
-        			<ul class="dropdown-menu" style="display:none">
-          				<li><a href="{% url 'grupos:graficaAnio' %}">Cant. Asistencia anual</a></li>
-			      		<li ><a href="{% url 'grupos:graficaMes' %}">Cant. Asistencia Mensual</a></li>
-		     
-      
-   					</ul>
-  				</li>
+		
   				
 		        </ul>
 		      </li>
