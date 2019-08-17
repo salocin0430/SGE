@@ -77,7 +77,6 @@ def info_usuario(self,pk):
 
 		p.setFont("Times-Bold", 19)
 		p.drawString(140, 760, u"INFORMACIÓN DE MEMBRESIA")
-		p.drawImage('static/imagenes/logo_pdf.png' , 480, 735, width=75, height=75)
 		y_nombre = 715
 		cadena=str(miembros.nombres)+ " "+ str(miembros.apellidos)
 		y_ocupacion = 0
@@ -160,7 +159,7 @@ def info_usuario(self,pk):
 			Story.append(foto)
 			foto.drawOn(p, 70, 600)
 		else:
-			p.drawImage('static/imagenes/Empty_profile/empty_profile.png', 70, 600, width=125, height=125)
+			p.drawImage('static/imagenes/logo_pdf.png', 70, 600, width=125, height=125)
 
 		styles = getSampleStyleSheet()
 		doc = SimpleDocTemplate("my_doc.pdf", pagesize=letter)

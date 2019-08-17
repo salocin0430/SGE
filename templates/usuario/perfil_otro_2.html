@@ -23,18 +23,7 @@
 <!-- Begin Contact Section -->
 <section id="contact-details">
  
-<!-- Begin Profile Image Section -->
-<div class="header_1">
-	{% if persona.image %}
-		<img src= "/media/{{persona.image}}{{persona.usuario.image}}"  width="250" height="250" alt="Foto Perfil" />
-	{% elif persona.usuario.image %}
-		<img src= "/media/{{persona.image}}{{persona.usuario.image}}"  width="250" height="250" alt="Foto Perfil" />
-	{% else %}
-		<p class="text-center">
-			<img src={% static "imagenes\Empty_profile\empty_profile.png"%} width="250" height="250" />
-		</p>
-	{% endif %}
-</div>
+
 <!-- End Profile Image Section -->
  
 <!-- Begin Profile Information Section -->
@@ -128,38 +117,7 @@
 <div class="clear">&nbsp;</div>
  
 <!-- Begin Profile Section -->
-<dl>
-<dt>Familiares :</dt>
-<dd>
 
-<table class="table table-hover" style="text-align: center">
-	<thead style="background:#c8cdce; font-weight: bold">
-		<tr>
-			<td style="border: 1px solid black">Parentesco</td>
-			<td style="border: 1px solid black">Nombre(s)</td>
-			<td style="border: 1px solid black">Apellido(s)</td>
-			<td style="border: 1px solid black">Edad</td>
-		</tr>
-	</thead>
-
-	<tbody>
-		{% if info_list %} <!--Manda el object_list porque usa una clase para listar-->
-		{% for conyuge_hijos in info_list %}
-		<tr>
-			<td style="border: 1px solid black">{{ conyuge_hijos.tipo }}</td>
-			<td style="border: 1px solid black">{{ conyuge_hijos.nombres_familiar }}</td>
-			<td style="border: 1px solid black">{{ conyuge_hijos.apellidos_familiar }}</td>
-			<td style="border: 1px solid black">{{ conyuge_hijos.edad_familiar }}</td>
-			
-		</tr>
-		{% endfor %}
-
-		{% endif %}
-	</tbody>
-</table>
-
- </dd>
-</dl>
 
 
 
@@ -196,16 +154,11 @@
 <ul class="icons_2">
 <li><a href="{% url 'usuario:exportar_pdf' persona.usuario.id %}" target="_blank" title="Generate Resume PDF"><img src="/static/imagenes/PDF/Ver.png" width="48" height="48" alt="Generar Resume PDF" / ></a></li>
 </ul>
-<ul class="icons_2">
-<li><a href="{% url 'usuario:exportar_pdf' persona.usuario.id %}" download="{{ persona.usuario.nombres }} {{ persona.usuario.apellidos }} - Membresía" title="Download Resume PDF"><img src="/static/imagenes/PDF/Descargar.png" width="48" height="48" alt="Descargar PDF" /></a></li>
-</ul>
+
 {% else %}
 {% if persona.id %}
 <ul class="icons_2">
 <li><a href="{% url 'usuario:exportar_pdf' persona.id %}" target="_blank" title="Generate Resume PDF"><img src="/static/imagenes/PDF/Ver.png" width="48" height="48" alt="Generar Resume PDF" / ></a></li>
-</ul>
-<ul class="icons_2">
-<li><a href="{% url 'usuario:exportar_pdf' persona.id %}" download="{{ persona.nombres }} {{ persona.apellidos }} - Membresía" title="Download Resume PDF"><img src="/static/imagenes/PDF/Descargar.png" width="48" height="48" alt="Descargar PDF" /></a></li>
 </ul>
 {% endif %}
 {% endif %}

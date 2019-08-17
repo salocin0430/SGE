@@ -27,14 +27,14 @@ from apps.usuario.views import pantallaInicio,mision
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    path('', pantallaInicio, name='pantallaInicio'),
+
     path('mision', mision, name='mision'),
     url(r'^Registro_Membresia/', include('apps.usuario.urls')),
     path('usuario/', include ('apps.usuario.urls', namespace="usuario")),
     path('login/', include ('apps.login.urls', namespace="login")),
     path('asistencia/', include ('apps.asistencia.urls', namespace="asistencia")),
     path('grupos/', include ('apps.grupos.urls', namespace="grupos")),
-    url(r'^accounts/login/',login, {'template_name':'index.html'}, name='loginsession'),
+    url('',login, {'template_name':'index.html'}, name='loginsession'),
     url(r'^logout/',logout_then_login,name='logout'),
     url(r'^reset/password_reset', password_reset, 
         {'template_name':'registration/password_reset_form.html',
